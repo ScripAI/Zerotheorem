@@ -113,7 +113,7 @@ module.exports = {
       },
       colors: {
         primary: {
-          DEFAULT: '#3b82f6', // blue-500 from original config
+          DEFAULT: '#00000', // blue-500 from original config
           foreground: 'hsl(var(--primary-foreground))'
         },
         border: 'hsl(var(--border))',

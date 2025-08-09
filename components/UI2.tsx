@@ -296,14 +296,14 @@ const UI2: React.FC<UI2Props> = ({
                     <textarea
                       placeholder={text.title.placeholder}
 
-                      className="w-full rounded-md border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
+                      className="w-full border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
                       rows={text?.title?.rows || 2}
                       maxLength={text.title.maxLength}
                       value={prompt.title}
                       onChange={handleTitle}
                     />
                     {text?.title?.hint && (
-                      <div className="w-fit rounded-md p-1 text-xs text-gray-800">
+                      <div className="w-fit  p-1 text-xs text-gray-800">
                         <svg
                           className="mr-2 inline w-3"
                           fill="currentColor"
@@ -340,7 +340,7 @@ const UI2: React.FC<UI2Props> = ({
                     <textarea
 
                       placeholder={text.description.placeholder}
-                      className="w-full rounded-md border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
+                      className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
                       rows={5}
                       maxLength={text.description.maxLength}
                       value={prompt.description}
@@ -359,7 +359,7 @@ const UI2: React.FC<UI2Props> = ({
                     </div>
                     <input
 
-                      className="w-full rounded-md border border-gray-300 p-2"
+                      className="w-full  border border-gray-300 p-2"
                       maxLength={text.keywords.maxLength}
                       value={prompt.keywords}
                       onChange={handleKeywords}
@@ -372,7 +372,7 @@ const UI2: React.FC<UI2Props> = ({
                     <div className="text-xs">{text.platform}</div>
                     <select
                       onChange={handlePlatform}
-                      className="w-full rounded-md border p-1 px-2 text-xs outline-none"
+                      className="w-full  border p-1 px-2 text-xs outline-none"
                     >
                       <option value="Facebook">
                         Facebook
@@ -403,7 +403,7 @@ const UI2: React.FC<UI2Props> = ({
                       <div className="text-xs">Language</div>
                       <select
                         onChange={handleLanguage}
-                        className="w-full rounded-md border p-1 px-2 text-xs outline-none"
+                        className="w-full  border p-1 px-2 text-xs outline-none"
                       >
                         <option value="English">
                           English
@@ -435,7 +435,7 @@ const UI2: React.FC<UI2Props> = ({
                       <div className="text-xs">Tone</div>
                       <select
                         onChange={handleTone}
-                        className="w-full rounded-md border p-1 px-2 text-xs outline-none"
+                        className="w-full  border p-1 px-2 text-xs outline-none"
                       >
                         <option value="Professional">
                           Professional
@@ -460,7 +460,7 @@ const UI2: React.FC<UI2Props> = ({
                     <div className="text-xs">Time :</div>
                     <select
                       onChange={handleTime}
-                      className="rounded-md border-none p-1 px-2 text-xs outline-none"
+                      className=" border-none p-1 px-2 text-xs outline-none"
                     >
                       <option value="30-to-60 seconds">
                         30-to-60 seconds
@@ -475,7 +475,7 @@ const UI2: React.FC<UI2Props> = ({
                   <button
                     disabled={isLoading}
                     onClick={handleApi}
-                    className="mx-auto w-full rounded-md border bg-rose-600 p-2 text-white shadow-sm outline-none"
+                    className="mx-auto w-full rounded border bg-rose-600 p-2 text-white shadow-sm outline-none"
                   >
                     {isLoading ? 'Loading...' : text.btnText}
                   </button>
@@ -483,7 +483,7 @@ const UI2: React.FC<UI2Props> = ({
                 {data?.length && data && (
                   <button
                     onClick={handleClearFields}
-                    className="mx-auto w-full rounded-full border p-2 outline-none"
+                    className="mx-auto w-full rounded border p-2 outline-none"
                   >
                     Clear All Fields
                   </button>
@@ -495,7 +495,7 @@ const UI2: React.FC<UI2Props> = ({
                 <div
                   id="copy"
                   contentEditable={true}
-                  className="h-[75vh] w-full overflow-y-scroll rounded-md border bg-white p-4 placeholder:text-[8px] placeholder:text-gray-600 focus:outline-none"
+                  className="h-[75vh] w-full overflow-y-scroll  border bg-white p-4 placeholder:text-[8px] placeholder:text-gray-600 focus:outline-none"
                 >
                   <WindupChildren>
                     {data?.length ? (
@@ -543,13 +543,13 @@ const UI2: React.FC<UI2Props> = ({
                 </div>
                 <div className="flex justify-center gap-2 p-2 text-xs sm:justify-end">
                   <button
-                    className="mb-1 cursor-pointer rounded-full border bg-gray-700 px-4 py-2 text-white"
+                    className="mb-1 cursor-pointer border rounded bg-gray-700 px-4 py-2 text-white"
                     onClick={handleCopyText}
                   >
                     {textCopy ? 'Text copied' : 'Copy to Clipboard'}
                   </button>
                   <button
-                    className="mb-1 cursor-pointer rounded-full border bg-rose-600 p-2 text-white"
+                    className="mb-1 cursor-pointer border rounded bg-rose-600 p-2 text-white"
                     onClick={handleClearText}
                   >
                     <svg
@@ -590,14 +590,14 @@ const UI2: React.FC<UI2Props> = ({
                     <textarea
                       placeholder={text.title.placeholder}
 
-                      className="w-full rounded-md border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
+                      className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
                       rows={text?.title?.rows || 2}
                       maxLength={text.title.maxLength}
                       value={prompt.title}
                       onChange={handleTitle}
                     />
                     {text?.title?.hint && (
-                      <div className="w-fit rounded-md p-1 text-xs text-gray-800">
+                      <div className="w-fit  p-1 text-xs text-gray-800">
                         <svg
                           className="mr-2 inline w-3"
                           fill="currentColor"
@@ -634,7 +634,7 @@ const UI2: React.FC<UI2Props> = ({
                     <textarea
 
                       placeholder={text.description.placeholder}
-                      className="w-full rounded-md border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
+                      className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
                       rows={5}
                       maxLength={text.description.maxLength}
                       value={prompt.description}
@@ -653,7 +653,7 @@ const UI2: React.FC<UI2Props> = ({
                     </div>
                     <input
 
-                      className="w-full rounded-md border border-gray-300 p-2"
+                      className="w-full  border border-gray-300 p-2"
                       maxLength={text.keywords.maxLength}
                       value={prompt.keywords}
                       onChange={handleKeywords}
@@ -666,7 +666,7 @@ const UI2: React.FC<UI2Props> = ({
                     <div className="text-xs">{text.platform}</div>
                     <select
                       onChange={handlePlatform}
-                      className="w-full rounded-md border p-1 px-2 text-xs outline-none"
+                      className="w-full  border p-1 px-2 text-xs outline-none"
                     >
                       <option value="Facebook">
                         Facebook
@@ -697,7 +697,7 @@ const UI2: React.FC<UI2Props> = ({
                       <div className="text-xs">Language</div>
                       <select
                         onChange={handleLanguage}
-                        className="w-full rounded-md border p-1 px-2 text-xs outline-none"
+                        className="w-full  border p-1 px-2 text-xs outline-none"
                       >
                         <option value="English">
                           English
@@ -729,7 +729,7 @@ const UI2: React.FC<UI2Props> = ({
                       <div className="text-xs">Tone</div>
                       <select
                         onChange={handleTone}
-                        className="w-full rounded-md border p-1 px-2 text-xs outline-none"
+                        className="w-full  border p-1 px-2 text-xs outline-none"
                       >
                         <option value="Professional">
                           Professional
@@ -754,7 +754,7 @@ const UI2: React.FC<UI2Props> = ({
                     <div className="text-xs">Time :</div>
                     <select
                       onChange={handleTime}
-                      className="rounded-md border-none p-1 px-2 text-xs outline-none"
+                      className=" border-none p-1 px-2 text-xs outline-none"
                     >
                       <option value="30-to-60 seconds">
                         30-to-60 seconds
@@ -769,7 +769,7 @@ const UI2: React.FC<UI2Props> = ({
                   <button
                     disabled={isLoading}
                     onClick={handleApi}
-                    className="mx-auto w-full rounded-md border bg-rose-600 p-2 text-white shadow-sm outline-none"
+                    className="mx-auto w-full  border bg-rose-600 p-2 text-white shadow-sm outline-none"
                   >
                     {isLoading ? 'Loading...' : text.btnText}
                   </button>
@@ -777,7 +777,7 @@ const UI2: React.FC<UI2Props> = ({
                 {data?.length && data && (
                   <button
                     onClick={handleClearFields}
-                    className="mx-auto w-full rounded-full border p-2 outline-none"
+                    className="mx-auto w-full border p-2 outline-none"
                   >
                     Clear All Fields
                   </button>
@@ -789,7 +789,7 @@ const UI2: React.FC<UI2Props> = ({
                 <div
                   id="copy"
                   contentEditable={true}
-                  className="h-[70vh] w-full overflow-y-scroll rounded-md border border-gray-300 bg-white p-4 placeholder:text-[8px] placeholder:text-gray-600 focus:outline-none"
+                  className="h-[70vh] w-full overflow-y-scroll  border border-gray-300 bg-white p-4 placeholder:text-[8px] placeholder:text-gray-600 focus:outline-none"
                 >
                   <WindupChildren>
                     {data?.length ? (
@@ -837,13 +837,13 @@ const UI2: React.FC<UI2Props> = ({
                 </div>
                 <div className="flex justify-center gap-2 p-2 text-xs sm:justify-end">
                   <button
-                    className="mb-1 cursor-pointer rounded-full border bg-gray-700 px-4 py-2 text-white"
+                    className="mb-1 cursor-pointer border rounded bg-gray-700 px-4 py-2 text-white"
                     onClick={handleCopyText}
                   >
                     {textCopy ? 'Text copied' : 'Copy to Clipboard'}
                   </button>
                   <button
-                    className="mb-1 cursor-pointer rounded-full border bg-rose-600 p-2 text-white"
+                    className="mb-1 cursor-pointer border rounded bg-rose-600 p-2 text-white"
                     onClick={handleClearText}
                   >
                     <svg
@@ -867,7 +867,7 @@ const UI2: React.FC<UI2Props> = ({
             )}
           </div>
 
-                <div className="grid grid-cols-5 gap-5 p-4 m-4 border border-gray-200 rounded-md">
+                <div className="grid grid-cols-5 gap-5 p-4 m-4 border border-gray-200 ">
                   {ToolsLinks.map((section) => (
                     <div key={section.title} className="space-y-3">
                       <div className="flex items-center gap-2">

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import config from '@/config';
 import logo from '@/app/icon.png';
-import { Sparkles } from 'lucide-react';
+import { Sparkle } from 'lucide-react';
 // import AnimatedLogo from './AnimatedLogo';
 // Add the Footer to the bottom of your landing page and more.
 // The support link is connected to the config.js file. If there's no config.mailgun.supportEmail, the link won't be displayed.
@@ -17,13 +17,13 @@ const FooterBig = () => {
           <div className='w-72 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left'>
           <Link
           href={"/"}
-          className={`flex flex-1 items-center gap-2 px-1.5 py-2 rounded-lg  text-gray-900 `}
+          className={`flex flex-1 items-center gap-2 px-1.5 py-2 text-gray-900 `}
         >
-          <Sparkles
+          <Sparkle
             strokeWidth={1}
             color="#F43F5E"
             fill="#F43F5E"
-            className={"w-6  h-6"}
+            className={"w-6  h-6 text-rose-500"}
           />
           <span className="font-extrabold text-2xl">{config.appName}</span>
         </Link>

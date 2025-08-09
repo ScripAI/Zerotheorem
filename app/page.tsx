@@ -49,7 +49,7 @@ const Home = () => {
             {/* Save $30 - $60 every month on all AI tools! */}
             10X faster & free AI content tool!
           </p>
-          <div className="flex w-fit items-center justify-around rounded-full bg-rose-600 p-2 px-4	text-white shadow-xl hover:bg-rose-700 ">
+          <div className="flex w-fit items-center justify-around rounded bg-rose-600 p-2 px-4	text-white shadow-xl hover:bg-rose-700 ">
             <a href="/ai-tools">Try for Free!</a>
             <svg
               className="w-6"
@@ -83,7 +83,7 @@ const Home = () => {
           </a>
 
           <iframe
-            className="aspect-video w-11/12 rounded-md border-4 border-rose-600 bg-rose-600"
+            className="aspect-video w-11/12 border-4 border-black bg-black"
             title="Scrip AI — AI TikTok, Reel &amp; YT Shorts Script Writer"
             src="https://www.youtube.com/embed/nKVBwT_F-bc"
             frameBorder="0"

@@ -7,7 +7,7 @@ import Image from "next/image";
 import ButtonSignin from "./ButtonSignin";
 import logo from "@/app/icon.png";
 import config from "@/config";
-import { Sparkles } from "lucide-react";
+import { Sparkle } from "lucide-react";
 import ButtonAccount from "./ButtonAccount";
 import Stats from "./Stats";
 
@@ -263,13 +263,13 @@ const Header = () => {
 
         <Link
           href={"/"}
-          className={`flex items-center gap-2 px-1.5 py-2 rounded-lg  text-gray-900 `}
+          className={`flex items-center gap-2 px-1.5 py-2  text-gray-900 `}
         >
-          <Sparkles
+          <Sparkle
             strokeWidth={1}
             color="#F43F5E"
             fill="#F43F5E"
-            className={"w-6  h-6"}
+            className={"w-6  h-6 text-rose-500"}
           />
           <span className="font-extrabold text-2xl">{config.appName}</span>
         </Link>
@@ -278,7 +278,7 @@ const Header = () => {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
+            className="-m-2.5 inline-flex items-center justify-center p-2.5"
             onClick={() => setIsOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
@@ -303,7 +303,7 @@ const Header = () => {
         <div className="hidden lg:flex lg:justify-center lg:items-center">
           <div className="relative" data-mega-menu-container>
             <button
-              className="flex items-center gap-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:text-gray-900"
+              className="flex items-center gap-1 px-3 py-2 border border-gray-300 text-sm font-medium text-gray-700 hover:text-gray-900"
               onClick={handleMegaMenuToggle}
             >
               All Tools
@@ -326,7 +326,7 @@ const Header = () => {
 
             {/* Mega Menu */}
             <div
-              className={`absolute left-1/2  transform -translate-x-1/2 mt-2 w-screen max-w-5xl bg-white rounded-lg shadow-2xl ring-1 ring-black ring-opacity-5 z-50 ${
+              className={`absolute left-1/2  transform -translate-x-1/2 mt-2 w-screen max-w-6xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 z-50 ${
                 isMegaMenuOpen ? "block" : "hidden"
               }`}
             >
@@ -342,7 +342,7 @@ const Header = () => {
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="block text-sm text-gray-600 hover:text-blue-500 hover:underline hover:bg-gray-50 px-2 py-1 rounded"
+                            className="block text-sm text-gray-600 hover:text-blue-500 hover:underline hover:bg-gray-50 px-2 py-1"
                             onClick={handleMegaMenuClose}
                           >
                             {item.label}
@@ -377,9 +377,9 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <Link
               href={"/"}
-              className={`flex flex-1 items-center gap-2 px-1.5 py-2 rounded-lg  text-gray-900 `}
+              className={`flex flex-1 items-center gap-2 px-1.5 py-2  text-gray-900 `}
             >
-              <Sparkles
+              <Sparkle
                 strokeWidth={1}
                 color="#F43F5E"
                 fill="#F43F5E"
@@ -390,7 +390,7 @@ const Header = () => {
 
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5"
+              className="-m-2.5 p-2.5"
               onClick={() => setIsOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -419,7 +419,7 @@ const Header = () => {
                 return (
                   <div key={section.title} className="w-full">
                     <button
-                      className="flex items-center justify-between w-full py-2 px-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
+                      className="flex items-center justify-between w-full py-2 px-3 bg-gray-50 hover:bg-gray-100 transition-colors"
                       onClick={() => toggleMobileSection(section.title)}
                     >
                       <h3 className="text-sm font-semibold text-gray-900">{section.title}</h3>
@@ -443,7 +443,7 @@ const Header = () => {
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="block px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded"
+                            className="block px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                             onClick={() => setIsOpen(false)}
                           >
                             {item.label}
@@ -456,7 +456,7 @@ const Header = () => {
               })}
 
               
-              <div className="flex flex-col p-2 gap-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md">
+              <div className="flex flex-col p-2 gap-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
                 <ButtonAccount />           
                 <Stats numberOfWords={numberOfWords} dollers={moneySaved} />
 

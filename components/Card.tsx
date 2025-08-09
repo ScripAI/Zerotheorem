@@ -9,7 +9,7 @@ const Card = ({ pageObj }: { pageObj: any }) => {
           <a
             key={el.url}
             href={`${domainUrl}/${el.url}`}
-            className="flex flex-col items-start justify-between gap-3 rounded-sm border border-black p-5 text-left hover:translate-y-0.5 transition-transform h-full"
+            className="flex flex-col items-start justify-between gap-3  border border-black p-5 text-left hover:translate-y-0.5 transition-transform h-full"
           >
             <div className="flex flex-col gap-3 flex-grow">
               <div>
