@@ -17,14 +17,14 @@ const Stats = ({ numberOfWords, dollers }) => {
       {/* Money Saved */}
       <div className="bg-white border border-gray-300 px-3 py-2 shadow-sm">
         <div className="text-sm font-medium text-gray-600">
-          Money Saved: <span className="font-bold text-gray-900">${dollers}</span>
+          Saved: <span className="font-bold text-gray-900">${dollers}</span>
         </div>
       </div>
 
       {/* Tokens Used */}
       <div className="bg-white border border-gray-300 px-3 py-2  shadow-sm">
         <div className="text-sm font-medium text-gray-600">
-          Tokens Used: <span className="font-bold text-gray-900">{formatNumber(numberOfWords)}</span>
+          Tokens Consumed: <span className="font-bold text-gray-900">{formatNumber(numberOfWords)}</span>
         </div>
       </div>
     </div>
