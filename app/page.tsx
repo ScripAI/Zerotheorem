@@ -1,11 +1,7 @@
 'use client';
 
-import Footer from '@/components/Footer';
-// import Nav from '@/components/Nav';
-import pageObj from '@/components/PageObj';
-// import { useEffect, useState } from 'react';
-import Typewriter from 'typewriter-effect';
-import { domainUrl } from "@/components/domainUrl"
+import { pageObj } from '@/components/PageObj';
+import Typewriter from 'typewriter-effect'; 
 import HelloBar from '@/components/HelloBar';
 import Card from '@/components/Card';
 import { Suspense } from 'react';

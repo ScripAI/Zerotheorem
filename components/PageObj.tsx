@@ -1,4 +1,4 @@
-const pageObj = [
+export const pageObj = [
   {
     url: 'ig-reel-script',
     name: 'IG Script Writer',
@@ -973,7 +973,7 @@ const pageObj = [
   },
   {
     url: 'facebook-hashtag-generator',
-    name: 'Facebook Hashtag',
+    name: 'Facebook Hashtag Generator',
     toolName: 'Facebook Hashtag Generator',
     initialState: {
       title: '',
@@ -3406,5 +3406,3 @@ const pageObj = [
     },
   },
 ];
-
-export default pageObj;

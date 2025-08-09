@@ -11,7 +11,7 @@ import { Sparkles } from 'lucide-react';
 
 const FooterBig = () => {
   return (
-    <footer className='w-full mx-auto border-t border-base-content/10'>
+    <footer className='w-full mx-auto'>
       <div className='max-w-5xl mx-auto px-8 md:py-24 py-16'>
         <div className=' flex lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col md:gap-40 gap-10'>
           <div className='w-72 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left'>
