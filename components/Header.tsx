@@ -16,7 +16,6 @@ const megaMenuSections = [
     title: "Social Media",
     icon: "📱",
     items: [
-  
       { href: "/ig-reel-script", label: "IG Script Writer" },
       { href: "/linkedin-post", label: "LinkedIn Post" },
       { href: "/linkedin-story-post", label: "LinkedIn Story Post" },
@@ -38,7 +37,10 @@ const megaMenuSections = [
       { href: "/linkedin-hashtag", label: "LinkedIn Hashtag" },
       { href: "/tiktok-hashtag", label: "TikTok Hashtag" },
       { href: "/facebook-hashtag", label: "Facebook Hashtag" },
-      { href: "/facebook-hashtag-generator", label: "Facebook Hashtag Generator" },
+      {
+        href: "/facebook-hashtag-generator",
+        label: "Facebook Hashtag Generator",
+      },
       { href: "/instagram-hashtag", label: "Instagram Hashtag" },
       { href: "/youtube-hashtag", label: "YouTube Hashtag" },
     ],
@@ -82,7 +84,10 @@ const megaMenuSections = [
       { href: "/blog-post-hook", label: "Blog Post Hook" },
       { href: "/seo-keyword-generator", label: "SEO Keyword Generator" },
       { href: "/seo-title-generator", label: "SEO Title Generator" },
-      { href: "/seo-description-generator", label: "SEO Description Generator" },
+      {
+        href: "/seo-description-generator",
+        label: "SEO Description Generator",
+      },
     ],
   },
   {
@@ -94,7 +99,10 @@ const megaMenuSections = [
       { href: "/rewrite-email", label: "Email Rewriter" },
       { href: "/email-rewriter", label: "Professional Email Rewriter" },
       { href: "/linkedin-cold-reachout", label: "LinkedIn Cold Reachout" },
-      { href: "/customer-service-response", label: "Customer Service Response" },
+      {
+        href: "/customer-service-response",
+        label: "Customer Service Response",
+      },
     ],
   },
   {
@@ -163,17 +171,16 @@ const megaMenuSections = [
   },
 ];
 
-
 // A header with a logo on the left, dropdown menus in the center, and a CTA on the right.
 // The header is responsive, and on mobile, the links are hidden behind a burger button.
 const Header = () => {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
-  
+
   // Mobile menu section toggles - all sections closed by default
   const [openSections, setOpenSections] = useState<Set<string>>(new Set());
-  
+
   // Stats state management
   const [numberOfWords, setNumberOfWords] = useState(0);
   const [moneySaved, setMoneySaved] = useState(30);
@@ -185,12 +192,12 @@ const Header = () => {
 
   // Load stats from localStorage
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const localWords = localStorage.getItem('numberOfWords');
+    if (typeof window !== "undefined") {
+      const localWords = localStorage.getItem("numberOfWords");
       const initialNumberOfWords = Number(localWords) || 0;
       setNumberOfWords(initialNumberOfWords);
-      
-      const localMoney = localStorage.getItem('moneySaved') || '30';
+
+      const localMoney = localStorage.getItem("moneySaved") || "30";
       const initialMoneySaved = Number(localMoney);
       setMoneySaved(initialMoneySaved);
     }
@@ -204,11 +211,17 @@ const Header = () => {
       setMoneySaved(newMoney);
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('statsUpdated', handleStatsUpdate as EventListener);
-      
+    if (typeof window !== "undefined") {
+      window.addEventListener(
+        "statsUpdated",
+        handleStatsUpdate as EventListener
+      );
+
       return () => {
-        window.removeEventListener('statsUpdated', handleStatsUpdate as EventListener);
+        window.removeEventListener(
+          "statsUpdated",
+          handleStatsUpdate as EventListener
+        );
       };
     }
   }, []);
@@ -222,7 +235,7 @@ const Header = () => {
   };
 
   const toggleMobileSection = (sectionTitle: string) => {
-    setOpenSections(prev => {
+    setOpenSections((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(sectionTitle)) {
         newSet.delete(sectionTitle);
@@ -237,24 +250,30 @@ const Header = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      const megaMenuContainer = document.querySelector('[data-mega-menu-container]');
-      
-      if (isMegaMenuOpen && megaMenuContainer && !megaMenuContainer.contains(target)) {
+      const megaMenuContainer = document.querySelector(
+        "[data-mega-menu-container]"
+      );
+
+      if (
+        isMegaMenuOpen &&
+        megaMenuContainer &&
+        !megaMenuContainer.contains(target)
+      ) {
         setIsMegaMenuOpen(false);
       }
     };
 
     if (isMegaMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isMegaMenuOpen]);
 
   return (
-    <header className="bg-base-200">
+    <header className="bg-base-200 sticky top-0 z-50 bg-white">
       <nav
         className="flex items-center max-w-5xl justify-between py-2 px-4  mx-auto"
         aria-label="Global"
@@ -335,7 +354,9 @@ const Header = () => {
                   {megaMenuSections.map((section) => (
                     <div key={section.title} className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <h3 className="text-sm font-semibold text-gray-900">{section.title}</h3>
+                        <h3 className="text-sm font-semibold text-gray-900">
+                          {section.title}
+                        </h3>
                       </div>
                       <div className="space-y-2">
                         {section.items.map((item) => (
@@ -356,16 +377,12 @@ const Header = () => {
             </div>
           </div>
 
-
           <div className="flex items-center gap-2 ml-4">
-          <Stats numberOfWords={numberOfWords} dollers={moneySaved} />
+            <Stats numberOfWords={numberOfWords} dollers={moneySaved} />
             {/* Account Button */}
             <ButtonAccount />
           </div>
-
         </div>
-
-
       </nav>
 
       {/* Mobile menu, show/hide based on menu state. */}
@@ -422,7 +439,9 @@ const Header = () => {
                       className="flex items-center justify-between w-full py-2 px-3 bg-gray-50 hover:bg-gray-100 transition-colors"
                       onClick={() => toggleMobileSection(section.title)}
                     >
-                      <h3 className="text-sm font-semibold text-gray-900">{section.title}</h3>
+                      <h3 className="text-sm font-semibold text-gray-900">
+                        {section.title}
+                      </h3>
                       <svg
                         className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
                         fill="none"
@@ -455,26 +474,16 @@ const Header = () => {
                 );
               })}
 
-              
               <div className="flex flex-col p-2 gap-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
-                <ButtonAccount />           
+                <ButtonAccount />
                 <Stats numberOfWords={numberOfWords} dollers={moneySaved} />
-
               </div>
             </div>
 
-
-
-            
             {/* Your CTA on small screens */}
-           
-
-          
           </div>
         </div>
       </div>
-      
-   
     </header>
   );
 };

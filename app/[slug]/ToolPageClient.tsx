@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import UI2 from '../../components/UI2';
+import React, { useState, useEffect } from "react";
+import UI2 from "../../components/UI2";
 
 // Type definitions
 interface SeoData {
@@ -65,13 +65,13 @@ interface ToolPageClientProps {
 const ToolPageClient = ({ pageData, relatedArr }: ToolPageClientProps) => {
   // State management from [ai].js
   const [prompt, setPromptData] = useState<PromptState>({
-    title: pageData?.initialState?.title || '',
-    description: pageData?.initialState?.description || '',
-    keywords: pageData?.initialState?.keywords || '',
+    title: pageData?.initialState?.title || "",
+    description: pageData?.initialState?.description || "",
+    keywords: pageData?.initialState?.keywords || "",
     language: pageData?.initialState?.language,
     tone: pageData?.initialState?.tone,
     time: pageData?.initialState?.time,
-    platform: pageData?.initialState?.platform
+    platform: pageData?.initialState?.platform,
   });
 
   const [data, setData] = useState<string[] | null>(null);
@@ -89,11 +89,11 @@ const ToolPageClient = ({ pageData, relatedArr }: ToolPageClientProps) => {
   const [moneySaved, setMoneySaved] = useState(initalNumberOfMoney);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const localnumber = localStorage.getItem('numberOfWords');
+    if (typeof window !== "undefined") {
+      const localnumber = localStorage.getItem("numberOfWords");
       initalNumberOfWords = Number(localnumber) || 0;
       setNumberOfWords(initalNumberOfWords);
-      const localMoney = localStorage.getItem('moneySaved') || '30';
+      const localMoney = localStorage.getItem("moneySaved") || "30";
       initalNumberOfMoney = Number(localMoney);
       setMoneySaved(initalNumberOfMoney);
     }
@@ -101,7 +101,7 @@ const ToolPageClient = ({ pageData, relatedArr }: ToolPageClientProps) => {
 
   // Event handlers from [ai].js
   const handleCopyText = () => {
-    let copyText = document.getElementById('copy');
+    let copyText = document.getElementById("copy");
     if (copyText) {
       let htmlcopydata = copyText.innerText;
       navigator.clipboard.writeText(htmlcopydata);
@@ -147,29 +147,29 @@ const ToolPageClient = ({ pageData, relatedArr }: ToolPageClientProps) => {
 
   // API call function from [ai].js
   const getData = async () => {
-    const response = await fetch('/api/getGPT', {
-      method: 'POST',
+    const response = await fetch("/api/getGPT", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ prompt: prompt, slug: pageData.url }),
     });
 
     const resData = await response.json();
 
-    console.log(resData, 'resData');
+    console.log(resData, "resData");
 
-    const DataArr = resData?.result?.split('\n');
+    const DataArr = resData?.result?.split("\n");
     console.log(DataArr);
     setData(DataArr);
     setPromptData({
-      title: pageData?.initialState?.title || '',
-      description: pageData?.initialState?.description || '',
-      keywords: pageData?.initialState?.keywords || '',
+      title: pageData?.initialState?.title || "",
+      description: pageData?.initialState?.description || "",
+      keywords: pageData?.initialState?.keywords || "",
       language: pageData?.initialState?.language,
       tone: pageData?.initialState?.tone,
       time: pageData?.initialState?.time,
-      platform: pageData?.initialState?.platform
+      platform: pageData?.initialState?.platform,
     });
     setLoading(false);
   };
@@ -200,16 +200,16 @@ const ToolPageClient = ({ pageData, relatedArr }: ToolPageClientProps) => {
     setNumberOfWords(newNumber);
     setMoneySaved(newMoney);
 
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('numberOfWords', newNumber.toString());
-      localStorage.setItem('moneySaved', newMoney.toString());
-      
+    if (typeof window !== "undefined") {
+      localStorage.setItem("numberOfWords", newNumber.toString());
+      localStorage.setItem("moneySaved", newMoney.toString());
+
       // Dispatch custom event to update stats in header
-      const statsUpdateEvent = new CustomEvent('statsUpdated', {
+      const statsUpdateEvent = new CustomEvent("statsUpdated", {
         detail: {
           numberOfWords: newNumber,
-          moneySaved: newMoney
-        }
+          moneySaved: newMoney,
+        },
       });
       window.dispatchEvent(statsUpdateEvent);
     }
@@ -217,18 +217,18 @@ const ToolPageClient = ({ pageData, relatedArr }: ToolPageClientProps) => {
 
   const handleClearFields = () => {
     setPromptData({
-      title: pageData?.initialState?.title || '',
-      description: pageData?.initialState?.description || '',
-      keywords: pageData?.initialState?.keywords || '',
+      title: pageData?.initialState?.title || "",
+      description: pageData?.initialState?.description || "",
+      keywords: pageData?.initialState?.keywords || "",
       language: pageData?.initialState?.language,
       tone: pageData?.initialState?.tone,
       time: pageData?.initialState?.time,
-      platform: pageData?.initialState?.platform
+      platform: pageData?.initialState?.platform,
     });
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth <= 640) {
+    if (typeof window !== "undefined" && window.innerWidth <= 640) {
       let w = window.innerWidth;
       console.log(w);
       setMobile(true);

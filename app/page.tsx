@@ -1,50 +1,48 @@
-'use client';
+"use client";
 
-import { pageObj } from '@/components/PageObj';
-import Typewriter from 'typewriter-effect'; 
-import HelloBar from '@/components/HelloBar';
-import Card from '@/components/Card';
-import { Suspense } from 'react';
-import Header from '@/components/Header';
-import FooterBig from '@/components/FooterBig';
+import { pageObj } from "@/components/PageObj";
+import Typewriter from "typewriter-effect";
+import HelloBar from "@/components/HelloBar";
+import Card from "@/components/Card";
+import { Suspense } from "react";
+import Header from "@/components/Header";
+import FooterBig from "@/components/FooterBig";
 
 const Home = () => {
   return (
     <>
       <HelloBar />
-        <Suspense>
-          <Header />
-        </Suspense>
+      <Suspense>
+        <Header />
+      </Suspense>
 
-        <main className="m-auto flex max-w-5xl flex-col">
-
-
-        <div className="flex flex-col items-center justify-center gap-6 p-4 py-24">
-  
+      <main className="m-auto flex flex-col">
+        <div className="line w-full bg-gradient-to-t from-white pt-24 via-yellow-50 to-white flex flex-col text-center text-base font-extrabold text-black xs:text-2xl sdm:text-4xl sm:gap-3 md:text-5xl mdx:text-6xl  ">
+          {/* <span>copy.ai but FREE</span> */}
+          <span>Save $30/m ScripAI is FREE</span>
+          {/* <span>10X faster & free way to </span> */}
+          <span>write AI content for</span>
+          {/* <span>to write anything with AI</span> */}
+          <span className="text-rose-600">
+            <Typewriter
+              options={{
+                strings: [
+                  "Social Media Post",
+                  "TikTok Script",
+                  "Blog Post",
+                  "Email Marketing",
+                  "Instagram Reels",
+                  "Facebook Ads",
+                ],
+                autoStart: true,
+                loop: true,
+              }}
+            />
+          </span>
+        </div>
+        <div className="flex flex-col max-w-5xl m-auto items-center justify-center  gap-6 p-4 pb-24">
           {/* <div className='bg-black text-white text-sm py-1 px-3 rounded-full'>ScripAI is FREE</div> */}
-          <div className="line flex flex-col text-center text-base font-extrabold text-black xs:text-2xl sdm:text-4xl sm:gap-3 md:text-5xl mdx:text-6xl ">
-            {/* <span>copy.ai but FREE</span> */}
-            <span>Save $30/m ScripAI is FREE</span>
-            {/* <span>10X faster & free way to </span> */}
-            <span>write AI content for</span>
-            {/* <span>to write anything with AI</span> */}
-            <span className="text-rose-600">
-              <Typewriter
-                options={{
-                  strings: [
-                    'Social Media Post',
-                    'TikTok Script',
-                    'Blog Post',
-                    'Email Marketing',
-                    'Instagram Reels',
-                    'Facebook Ads',
-                  ],
-                  autoStart: true,
-                  loop: true,
-                }}
-              />
-            </span>
-          </div>
+
           <p className="text-center text-xs sm:text-base">
             {/* Save $30 - $60 every month on all AI tools! */}
             10X faster & free AI content tool!
@@ -94,10 +92,10 @@ const Home = () => {
             {pageObj?.length && <Card pageObj={pageObj} />}
           </div>
 
-          <div className=" flex w-[100%] flex-col items-center gap-6 rounded-xl bg-rose-600 px-2 py-10 text-center text-white xs:text-lg sdm:text-3xl">
+          <div className=" flex w-[100%] flex-col items-center gap-6 bg-rose-600 px-2 py-10 text-center text-white xs:text-lg sdm:text-3xl">
             Stop wasting time & start creating
             <br /> awesome copy for free!
-            <div className="flex w-fit items-center justify-around rounded-full bg-white p-2 px-4 text-lg	text-black ">
+            <div className="flex w-fit items-center justify-around rounded bg-white p-2 px-4 text-lg	text-black ">
               <a href="/ai-tools" className="text-md">
                 Try Scrip!
               </a>
@@ -124,7 +122,7 @@ const Home = () => {
           </div>
         </div>
       </main>
-      <FooterBig /> 
+      <FooterBig />
     </>
   );
 };

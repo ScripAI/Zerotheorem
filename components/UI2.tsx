@@ -1,14 +1,14 @@
-import React, { Suspense } from 'react';
-import { useEffect, useState } from 'react';
-import { WindupChildren } from 'windups';
-import HelloBar from './HelloBar';
-import Footer from './Footer';
-import Card from './Card';
-import { pageObj } from './PageObj';
-import Menu from '@/components/Menu';
-import FooterBig from './FooterBig';
-import Header from './Header';
-import Link from 'next/link';
+import React, { Suspense } from "react";
+import { useEffect, useState } from "react";
+import { WindupChildren } from "windups";
+import HelloBar from "./HelloBar";
+import Footer from "./Footer";
+import Card from "./Card";
+import { pageObj } from "./PageObj";
+import Menu from "@/components/Menu";
+import FooterBig from "./FooterBig";
+import Header from "./Header";
+import Link from "next/link";
 
 interface FieldConfig {
   name: string;
@@ -106,13 +106,11 @@ const UI2: React.FC<UI2Props> = ({
     setRelatedObj(pageObj?.sort(() => Math.random() - 0.5).slice(0, 6));
   }, []);
 
-
-    const ToolsLinks = [
+  const ToolsLinks = [
     {
       title: "Social Media",
       icon: "📱",
       items: [
-    
         { href: "/ig-reel-script", label: "IG Script Writer" },
         { href: "/linkedin-post", label: "LinkedIn Post" },
         { href: "/linkedin-story-post", label: "LinkedIn Story Post" },
@@ -134,7 +132,10 @@ const UI2: React.FC<UI2Props> = ({
         { href: "/linkedin-hashtag", label: "LinkedIn Hashtag" },
         { href: "/tiktok-hashtag", label: "TikTok Hashtag" },
         { href: "/facebook-hashtag", label: "Facebook Hashtag" },
-        { href: "/facebook-hashtag-generator", label: "Facebook Hashtag Generator" },
+        {
+          href: "/facebook-hashtag-generator",
+          label: "Facebook Hashtag Generator",
+        },
         { href: "/instagram-hashtag", label: "Instagram Hashtag" },
         { href: "/youtube-hashtag", label: "YouTube Hashtag" },
       ],
@@ -178,7 +179,10 @@ const UI2: React.FC<UI2Props> = ({
         { href: "/blog-post-hook", label: "Blog Post Hook" },
         { href: "/seo-keyword-generator", label: "SEO Keyword Generator" },
         { href: "/seo-title-generator", label: "SEO Title Generator" },
-        { href: "/seo-description-generator", label: "SEO Description Generator" },
+        {
+          href: "/seo-description-generator",
+          label: "SEO Description Generator",
+        },
       ],
     },
     {
@@ -190,7 +194,10 @@ const UI2: React.FC<UI2Props> = ({
         { href: "/rewrite-email", label: "Email Rewriter" },
         { href: "/email-rewriter", label: "Professional Email Rewriter" },
         { href: "/linkedin-cold-reachout", label: "LinkedIn Cold Reachout" },
-        { href: "/customer-service-response", label: "Customer Service Response" },
+        {
+          href: "/customer-service-response",
+          label: "Customer Service Response",
+        },
       ],
     },
     {
@@ -259,7 +266,6 @@ const UI2: React.FC<UI2Props> = ({
     },
   ];
 
-
   return (
     <div className="relative">
       {/* <SEOMeta
@@ -267,12 +273,12 @@ const UI2: React.FC<UI2Props> = ({
         description={text.seoData?.description}
         slug={text.seoData?.slug}
       /> */}
-         
+
       <Suspense>
-         <HelloBar />
+        <HelloBar />
         <Header />
-      </Suspense> 
-  
+      </Suspense>
+
       <main>
         <div className="m-auto flex max-w-5xl flex-col items-center text-sm">
           {/* <Nav /> */}
@@ -295,7 +301,6 @@ const UI2: React.FC<UI2Props> = ({
                     </div>
                     <textarea
                       placeholder={text.title.placeholder}
-
                       className="w-full border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
                       rows={text?.title?.rows || 2}
                       maxLength={text.title.maxLength}
@@ -332,13 +337,12 @@ const UI2: React.FC<UI2Props> = ({
                 {text?.description && text?.description?.name && (
                   <div className="flex flex-col gap-1 ">
                     <div className="text-xs">
-                      {text.description.name}{' '}
+                      {text.description.name}{" "}
                       {text.description.showOptional && (
                         <span className="text-[8px]">{`(optional)`}</span>
                       )}
                     </div>
                     <textarea
-
                       placeholder={text.description.placeholder}
                       className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
                       rows={5}
@@ -352,13 +356,12 @@ const UI2: React.FC<UI2Props> = ({
                 {text.keywords && (
                   <div className="flex flex-col gap-1 ">
                     <div className="text-xs">
-                      {text.keywords.name}{' '}
+                      {text.keywords.name}{" "}
                       {text.keywords.showOptional && (
                         <span className="text-[8px]">{`(optional)`}</span>
                       )}
                     </div>
                     <input
-
                       className="w-full  border border-gray-300 p-2"
                       maxLength={text.keywords.maxLength}
                       value={prompt.keywords}
@@ -374,9 +377,7 @@ const UI2: React.FC<UI2Props> = ({
                       onChange={handlePlatform}
                       className="w-full  border p-1 px-2 text-xs outline-none"
                     >
-                      <option value="Facebook">
-                        Facebook
-                      </option>
+                      <option value="Facebook">Facebook</option>
                       <option value="Instagram">Instagram</option>
                       <option value="TikTok">TikTok </option>
                       <option value="Twitter">Twitter</option>
@@ -396,8 +397,8 @@ const UI2: React.FC<UI2Props> = ({
                     <div
                       className={
                         text?.language && text?.tone
-                          ? 'flex flex-col gap-1'
-                          : 'flex w-full flex-col gap-1'
+                          ? "flex flex-col gap-1"
+                          : "flex w-full flex-col gap-1"
                       }
                     >
                       <div className="text-xs">Language</div>
@@ -405,9 +406,7 @@ const UI2: React.FC<UI2Props> = ({
                         onChange={handleLanguage}
                         className="w-full  border p-1 px-2 text-xs outline-none"
                       >
-                        <option value="English">
-                          English
-                        </option>
+                        <option value="English">English</option>
                         <option value="Spanish">Spanish</option>
                         <option value="French">French</option>
                         <option value="Chinese">Chinese</option>
@@ -428,8 +427,8 @@ const UI2: React.FC<UI2Props> = ({
                     <div
                       className={
                         text?.language && text?.tone
-                          ? 'flex flex-col gap-1'
-                          : 'flex w-full flex-col gap-1'
+                          ? "flex flex-col gap-1"
+                          : "flex w-full flex-col gap-1"
                       }
                     >
                       <div className="text-xs">Tone</div>
@@ -437,9 +436,7 @@ const UI2: React.FC<UI2Props> = ({
                         onChange={handleTone}
                         className="w-full  border p-1 px-2 text-xs outline-none"
                       >
-                        <option value="Professional">
-                          Professional
-                        </option>
+                        <option value="Professional">Professional</option>
                         <option value="Informative">Informative</option>
                         <option value="Convincing">Convincing</option>
                         <option value="Enthusiastic">Enthusiastic</option>
@@ -462,9 +459,7 @@ const UI2: React.FC<UI2Props> = ({
                       onChange={handleTime}
                       className=" border-none p-1 px-2 text-xs outline-none"
                     >
-                      <option value="30-to-60 seconds">
-                        30-to-60 seconds
-                      </option>
+                      <option value="30-to-60 seconds">30-to-60 seconds</option>
                       <option value="30 seconds">30 seconds</option>
                       <option value="60 seconds">60 seconds</option>
                     </select>
@@ -477,7 +472,7 @@ const UI2: React.FC<UI2Props> = ({
                     onClick={handleApi}
                     className="mx-auto w-full rounded border bg-rose-600 p-2 text-white shadow-sm outline-none"
                   >
-                    {isLoading ? 'Loading...' : text.btnText}
+                    {isLoading ? "Loading..." : text.btnText}
                   </button>
                 }
                 {data?.length && data && (
@@ -543,10 +538,10 @@ const UI2: React.FC<UI2Props> = ({
                 </div>
                 <div className="flex justify-center gap-2 p-2 text-xs sm:justify-end">
                   <button
-                    className="mb-1 cursor-pointer border rounded bg-gray-700 px-4 py-2 text-white"
+                    className="mb-1 cursor-pointer border rounded bg-black px-4 py-2 text-white"
                     onClick={handleCopyText}
                   >
-                    {textCopy ? 'Text copied' : 'Copy to Clipboard'}
+                    {textCopy ? "Text copied" : "Copy to Clipboard"}
                   </button>
                   <button
                     className="mb-1 cursor-pointer border rounded bg-rose-600 p-2 text-white"
@@ -589,7 +584,6 @@ const UI2: React.FC<UI2Props> = ({
                     </div>
                     <textarea
                       placeholder={text.title.placeholder}
-
                       className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
                       rows={text?.title?.rows || 2}
                       maxLength={text.title.maxLength}
@@ -626,13 +620,12 @@ const UI2: React.FC<UI2Props> = ({
                 {text?.description && text?.description?.name && (
                   <div className="flex flex-col gap-1 ">
                     <div className="text-xs">
-                      {text.description.name}{' '}
+                      {text.description.name}{" "}
                       {text.description.showOptional && (
                         <span className="text-[8px]">{`(optional)`}</span>
                       )}
                     </div>
                     <textarea
-
                       placeholder={text.description.placeholder}
                       className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
                       rows={5}
@@ -646,13 +639,12 @@ const UI2: React.FC<UI2Props> = ({
                 {text.keywords && (
                   <div className="flex flex-col gap-1 ">
                     <div className="text-xs">
-                      {text.keywords.name}{' '}
+                      {text.keywords.name}{" "}
                       {text.keywords.showOptional && (
                         <span className="text-[8px]">{`(optional)`}</span>
                       )}
                     </div>
                     <input
-
                       className="w-full  border border-gray-300 p-2"
                       maxLength={text.keywords.maxLength}
                       value={prompt.keywords}
@@ -668,9 +660,7 @@ const UI2: React.FC<UI2Props> = ({
                       onChange={handlePlatform}
                       className="w-full  border p-1 px-2 text-xs outline-none"
                     >
-                      <option value="Facebook">
-                        Facebook
-                      </option>
+                      <option value="Facebook">Facebook</option>
                       <option value="Instagram">Instagram</option>
                       <option value="TikTok">TikTok </option>
                       <option value="Twitter">Twitter</option>
@@ -690,8 +680,8 @@ const UI2: React.FC<UI2Props> = ({
                     <div
                       className={
                         text?.language && text?.tone
-                          ? 'flex flex-col gap-1'
-                          : 'flex w-full flex-col gap-1'
+                          ? "flex flex-col gap-1"
+                          : "flex w-full flex-col gap-1"
                       }
                     >
                       <div className="text-xs">Language</div>
@@ -699,9 +689,7 @@ const UI2: React.FC<UI2Props> = ({
                         onChange={handleLanguage}
                         className="w-full  border p-1 px-2 text-xs outline-none"
                       >
-                        <option value="English">
-                          English
-                        </option>
+                        <option value="English">English</option>
                         <option value="Spanish">Spanish</option>
                         <option value="French">French</option>
                         <option value="Chinese">Chinese</option>
@@ -722,8 +710,8 @@ const UI2: React.FC<UI2Props> = ({
                     <div
                       className={
                         text?.language && text?.tone
-                          ? 'flex flex-col gap-1'
-                          : 'flex w-full flex-col gap-1'
+                          ? "flex flex-col gap-1"
+                          : "flex w-full flex-col gap-1"
                       }
                     >
                       <div className="text-xs">Tone</div>
@@ -731,9 +719,7 @@ const UI2: React.FC<UI2Props> = ({
                         onChange={handleTone}
                         className="w-full  border p-1 px-2 text-xs outline-none"
                       >
-                        <option value="Professional">
-                          Professional
-                        </option>
+                        <option value="Professional">Professional</option>
                         <option value="Informative">Informative</option>
                         <option value="Convincing">Convincing</option>
                         <option value="Enthusiastic">Enthusiastic</option>
@@ -756,9 +742,7 @@ const UI2: React.FC<UI2Props> = ({
                       onChange={handleTime}
                       className=" border-none p-1 px-2 text-xs outline-none"
                     >
-                      <option value="30-to-60 seconds">
-                        30-to-60 seconds
-                      </option>
+                      <option value="30-to-60 seconds">30-to-60 seconds</option>
                       <option value="30 seconds">30 seconds</option>
                       <option value="60 seconds">60 seconds</option>
                     </select>
@@ -771,7 +755,7 @@ const UI2: React.FC<UI2Props> = ({
                     onClick={handleApi}
                     className="mx-auto w-full  border bg-rose-600 p-2 text-white shadow-sm outline-none"
                   >
-                    {isLoading ? 'Loading...' : text.btnText}
+                    {isLoading ? "Loading..." : text.btnText}
                   </button>
                 }
                 {data?.length && data && (
@@ -837,10 +821,10 @@ const UI2: React.FC<UI2Props> = ({
                 </div>
                 <div className="flex justify-center gap-2 p-2 text-xs sm:justify-end">
                   <button
-                    className="mb-1 cursor-pointer border rounded bg-gray-700 px-4 py-2 text-white"
+                    className="mb-1 cursor-pointer border rounded bg-black px-4 py-2 text-white"
                     onClick={handleCopyText}
                   >
-                    {textCopy ? 'Text copied' : 'Copy to Clipboard'}
+                    {textCopy ? "Text copied" : "Copy to Clipboard"}
                   </button>
                   <button
                     className="mb-1 cursor-pointer border rounded bg-rose-600 p-2 text-white"
@@ -867,30 +851,28 @@ const UI2: React.FC<UI2Props> = ({
             )}
           </div>
 
-                <div className="grid grid-cols-5 gap-5 p-4 m-4 border border-gray-200 ">
-                  {ToolsLinks.map((section) => (
-                    <div key={section.title} className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-sm font-semibold text-gray-900">{section.title}</h3>
-                      </div>
-                      <div className="space-y-2">
-                        {section.items.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block text-sm text-gray-600 hover:text-blue-500 hover:underline hover:bg-gray-50 px-2 py-1 rounded"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+          <div className="grid grid-cols-5 gap-5 p-4 m-4 border border-gray-200 ">
+            {ToolsLinks.map((section) => (
+              <div key={section.title} className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-sm font-semibold text-gray-900">
+                    {section.title}
+                  </h3>
+                </div>
+                <div className="space-y-2">
+                  {section.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block text-sm text-gray-600 hover:text-blue-500 hover:underline hover:bg-gray-50 px-2 py-1 rounded"
+                    >
+                      {item.label}
+                    </Link>
                   ))}
                 </div>
-      
-     
-
-
+              </div>
+            ))}
+          </div>
 
           <FooterBig />
         </div>
