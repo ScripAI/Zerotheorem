@@ -7,11 +7,10 @@ import config from "@/config";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ categoryId: string }>;
+  params: { categoryId: string };
 }) {
-  const resolvedParams = await params;
   const category = categories.find(
-    (category) => category.slug === resolvedParams.categoryId
+    (category) => category.slug === params.categoryId
   );
 
   return getSEOTags({
@@ -24,11 +23,10 @@ export async function generateMetadata({
 export default async function Category({
   params,
 }: {
-  params: Promise<{ categoryId: string }>;
+  params: { categoryId: string };
 }) {
-  const resolvedParams = await params;
   const category = categories.find(
-    (category) => category.slug === resolvedParams.categoryId
+    (category) => category.slug === params.categoryId
   );
   const articlesInCategory = articles
     .filter((article) =>
