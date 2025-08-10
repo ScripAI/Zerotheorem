@@ -15,16 +15,16 @@ const Stats = ({ numberOfWords, dollers }) => {
   return (
     <div className="flex justify-center gap-2">
       {/* Money Saved */}
-      <div className="bg-white border border-gray-300 px-3 py-2 shadow-sm">
-        <div className="text-sm font-medium text-gray-600">
-          Saved: <span className="font-bold text-gray-900">${dollers}</span>
+      <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] px-3 py-2 shadow-sm  transition-colors duration-200">
+        <div className="text-sm font-medium text-[hsl(var(--text-secondary))] transition-colors duration-200">
+          Saved: <span className="font-bold text-[hsl(var(--text-primary))] transition-colors duration-200">${dollers}</span>
         </div>
       </div>
 
       {/* Tokens Used */}
-      <div className="bg-white border border-gray-300 px-3 py-2  shadow-sm">
-        <div className="text-sm font-medium text-gray-600">
-          Tokens Consumed: <span className="font-bold text-gray-900">{formatNumber(numberOfWords)}</span>
+      <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] px-3 py-2 shadow-sm  transition-colors duration-200">
+        <div className="text-sm font-medium text-[hsl(var(--text-secondary))] transition-colors duration-200">
+          Tokens Consumed: <span className="font-bold text-[hsl(var(--text-primary))] transition-colors duration-200">{formatNumber(numberOfWords)}</span>
         </div>
       </div>
     </div>

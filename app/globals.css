@@ -30,8 +30,8 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
+    --border: 220 13% 84%;
+    --input: 220 13% 84%;
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
@@ -45,41 +45,72 @@
     --chart-4: 43 74% 66%;
 
     --chart-5: 27 87% 67%;
+
+    /* Custom theme colors */
+    --header-bg: 0 0% 100%;
+    --header-border: 220 13% 90%;
+    --text-primary: 240 10% 3.9%;
+    --text-secondary: 240 3.8% 46.1%;
+    --mega-menu-bg: 0 0% 100%;
+    --mega-menu-border: 220 13% 84%;
+    --mega-menu-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* Hero gradient colors */
+    --hero-gradient-from: 0 0% 100%;
+    --hero-gradient-via: 30 30% 85%;
+    --hero-gradient-to: 0 0% 100%;
+    --hero-text: 240 10% 3.9%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 0 0% 0%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 3.9%;
+    --card: 0 0% 3%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 0 0% 3%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 240 3.7% 15.9%;
+    --accent: 0 0% 8%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+           --border: 0 0% 25%;
+       --input: 0 0% 8%;
+       --ring: 0 0% 83%;
+    
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+             /* Custom dark theme colors */
+         --header-bg: 0 0% 0%;
+         --header-border: 0 0% 25%;
+         --text-primary: 0 0% 98%;
+         --text-secondary: 0 0% 65%;
+         --mega-menu-bg: 0 0% 3%;
+         --mega-menu-border: 0 0% 25%;
+         --mega-menu-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.8), 0 4px 6px -2px rgba(0, 0, 0, 0.6);
+
+         /* Hero gradient colors - dark theme */
+         --hero-gradient-from: 0 0% 0%;
+         --hero-gradient-via: 0 0% 25%;
+         --hero-gradient-to: 0 0% 0%;
+         --hero-text: 0 0% 98%;
   }
 }
 
@@ -108,7 +139,12 @@ progress::-webkit-progress-value {
   transition: 0.6s width ease-out;
 }
 
-/* Dark mode transitions */
+/* Theme transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Dark mode specific transitions */
 .dark * {
   @apply transition-colors duration-200;
 }
@@ -202,4 +238,9 @@ progress::-webkit-progress-value {
   border-radius: 6px;
   position: relative;
   z-index: 1;
+}
+
+/* Dark mode input content */
+.dark .input-content {
+  background: hsl(var(--card));
 }

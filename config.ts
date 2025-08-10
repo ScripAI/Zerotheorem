@@ -81,7 +81,15 @@ const config = {
     theme: "light",
     // REQUIRED — This color will be reflected on the whole app outside of the document (loading bar, Chrome tabs, etc..). 
     // You can use a custom color: main: "#f37055". HEX only.
-    main: "#f37055",
+    main: "#000000",
+    // Theme-aware progress bar colors
+    progressBar: {
+      light: "#000000", // Black for light mode
+      dark: "#ffffff",  // White for dark mode
+      // Alternative: use your brand colors
+      // light: "#f37055", // Your brand orange for light mode
+      // dark: "#ef4e7b",  // Your brand pink for dark mode
+    },
   },
   auth: {
     // REQUIRED — the path to log in users. It's use to protect private routes (like /dashboard). It's used in apiClient (/libs/api.js) upon 401 errors from our API

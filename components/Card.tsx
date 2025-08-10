@@ -10,19 +10,17 @@ const Card = ({ pageObj }: { pageObj: any }) => {
           <a
             key={el.url}
             href={`${domainUrl}/${el.url}`}
-            className="flex flex-col items-start justify-between gap-3  border border-black p-5 text-left hover:translate-y-0.5 transition-transform h-full"
+            className="flex flex-col items-start justify-between gap-3 border border-[hsl(var(--border))] p-5 text-left hover:translate-y-0.5 transition-all duration-200 h-full bg-[hsl(var(--card))] hover:bg-[hsl(var(--accent))] "
           >
             <div className="flex flex-col gap-3 flex-grow">
               <div>
                 <Sparkle
                   strokeWidth={1}
-                  color="white"
-                  fill="white"
-                  className="w-9 h-9 rounded-full bg-black p-2 animate-wiggle"
+                  className="w-9 h-9 rounded-full bg-[hsl(var(--primary))] p-2 animate-wiggle text-[hsl(var(--primary-foreground))] fill-[hsl(var(--primary-foreground))]"
                 />
               </div>
-              <div className="text-sm font-extrabold text-black">{el.name}</div>
-              <div className="text-left text-xs font-normal">
+              <div className="text-sm font-extrabold text-[hsl(var(--text-primary))] transition-colors duration-200">{el.name}</div>
+              <div className="text-left text-xs font-normal text-[hsl(var(--text-secondary))] transition-colors duration-200">
                 {el.seoData.description}
               </div>
             </div>

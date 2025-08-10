@@ -174,7 +174,7 @@ const Testimonial = ({ i }: { i: number }) => {
 
   return (
     <li key={i}>
-      <figure className="relative h-full p-6 bg-base-100 rounded-lg">
+      <figure className="relative h-full p-6 bg-base-100 ">
         <blockquote className="relative">
           <p className="text-sm text-base-content/80">{testimonial.text}</p>
         </blockquote>
@@ -254,7 +254,7 @@ const VideoTestimonial = ({ i }: { i: number }) => {
   return (
     <li
       key={i}
-      className="break-inside-avoid max-md:flex justify-center bg-base-100 rounded-lg overflow-hidden flex flex-col"
+      className="break-inside-avoid max-md:flex justify-center bg-base-100  overflow-hidden flex flex-col"
     >
       <div className="relative w-full">
         {isLoading && (
@@ -391,7 +391,7 @@ const Testimonials11 = () => {
             {/* BIG FEATURED TESTIMONIAL — THE LAST ONE IN THE LIST (11th) */}
             <ul className="col-span-2">
               <li>
-                <figure className="relative h-full p-6 bg-base-100 rounded-lg">
+                <figure className="relative h-full p-6 bg-base-100 ">
                   <blockquote className="relative p-4">
                     <p className="text-lg font-medium text-base-content">
                       {list[list.length - 1].text}

@@ -52,7 +52,7 @@ const ButtonAccount = () => {
       <button
         onClick={handleLogin}
         disabled={isLoading}
-        className="inline-flex w-fit items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="inline-flex w-fit items-center gap-2 px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] bg-[hsl(var(--card))] border border-[hsl(var(--border))] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[hsl(var(--accent))] transition-colors duration-200 "
       >
         {isLoading ? (
           <svg className="animate-spin w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -92,7 +92,7 @@ const ButtonAccount = () => {
   return (
     <button
       onClick={handleSignOut}
-      className="group relative inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:bg-gray-50 hover:text-red-600 hover:border-red-200 transition-all duration-200"
+      className="group relative inline-flex items-center px-3 py-2 text-sm font-medium text-[hsl(var(--text-primary))] bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-sm hover:bg-[hsl(var(--accent))] hover:text-red-600 hover:border-red-200 transition-all duration-200 "
     >
       {/* Show logout icon on hover, otherwise show user avatar */}
       <div className="relative mr-2">
@@ -101,13 +101,13 @@ const ButtonAccount = () => {
             <img
               src={user?.user_metadata?.avatar_url}
               alt={"Profile picture"}
-              className="w-6 h-6 rounded shrink-0 object-cover"
+              className="w-5 h-5 rounded-full shrink-0 object-cover"
               referrerPolicy="no-referrer"
               width={24}
               height={24}
             />
           ) : (
-            <span className="w-6 h-6 bg-gray-300 flex justify-center items-center shrink-0 capitalize text-gray-700 font-medium text-sm">
+            <span className="w-6 h-6 bg-[hsl(var(--muted))] flex justify-center items-center shrink-0 capitalize text-[hsl(var(--muted-foreground))] font-medium text-sm">
               {user?.email?.charAt(0)}
             </span>
           )}

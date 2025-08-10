@@ -56,6 +56,10 @@ export interface ConfigProps {
   colors: {
     theme: Theme;
     main: string;
+    progressBar: {
+      light: string;
+      dark: string;
+    };
   };
   auth: {
     loginUrl: string;

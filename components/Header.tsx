@@ -10,6 +10,7 @@ import config from "@/config";
 import { Sparkle } from "lucide-react";
 import ButtonAccount from "./ButtonAccount";
 import Stats from "./Stats";
+import ThemeToggle from "./ThemeToggle";
 
 const megaMenuSections = [
   {
@@ -171,6 +172,7 @@ const Header = () => {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // Mobile menu section toggles - all sections closed by default
   const [openSections, setOpenSections] = useState<Set<string>>(new Set());
@@ -178,6 +180,11 @@ const Header = () => {
   // Stats state management
   const [numberOfWords, setNumberOfWords] = useState(0);
   const [moneySaved, setMoneySaved] = useState(30);
+
+  // Avoid hydration mismatch for theme
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // setIsOpen(false) when the route changes (i.e: when the user clicks on a link on mobile)
   useEffect(() => {
@@ -266,32 +273,34 @@ const Header = () => {
     };
   }, [isMegaMenuOpen]);
 
+
+
   return (
-    <header className="bg-base-200 sticky top-0 z-50 bg-white">
+    <header className="sticky top-0 z-50 bg-[hsl(var(--header-bg))] border-b border-[hsl(var(--header-border))] transition-colors duration-200">
       <nav
-        className="flex items-center max-w-5xl justify-between py-2 px-4  mx-auto"
+        className="flex items-center max-w-5xl justify-between py-2 px-4 mx-auto"
         aria-label="Global"
       >
         {/* Your logo/name on large screens */}
-
         <Link
           href={"/"}
-          className={`flex items-center gap-2 px-1.5 py-2  text-gray-900 `}
+          className={`flex items-center gap-2 px-1.5 py-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
         >
           <Sparkle
             strokeWidth={1}
             color="#F43F5E"
             fill="#F43F5E"
-            className={"w-6  h-6 text-rose-500"}
+            className={"w-6 h-6 text-rose-500"}
           />
           <span className="font-extrabold text-2xl">{config.appName}</span>
         </Link>
+
 
         {/* Burger button to open menu on mobile */}
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center p-2.5"
+            className="-m-2.5 inline-flex items-center justify-center p-2.5 text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
             onClick={() => setIsOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
@@ -301,7 +310,7 @@ const Header = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 text-base-content"
+              className="w-6 h-6"
             >
               <path
                 strokeLinecap="round"
@@ -313,10 +322,12 @@ const Header = () => {
         </div>
 
         {/* All Tools Mega Menu on large screens */}
-        <div className="hidden lg:flex lg:justify-center lg:items-center">
+        <div className="hidden lg:flex  lg:justify-center lg:items-center gap-3">
+
+          
           <div className="relative" data-mega-menu-container>
             <button
-              className="flex items-center gap-1 px-3 py-2 border border-gray-300 text-sm font-medium text-gray-700 hover:text-gray-900"
+              className="flex items-center gap-1 px-3 py-2 border border-[hsl(var(--border))] text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] bg-[hsl(var(--card))] hover:bg-[hsl(var(--accent))] transition-colors duration-200 "
               onClick={handleMegaMenuToggle}
             >
               All Tools
@@ -339,8 +350,8 @@ const Header = () => {
 
             {/* Mega Menu */}
             <div
-              className={`absolute left-1/2  transform -translate-x-1/2 mt-2 w-screen max-w-6xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 z-50 ${
-                isMegaMenuOpen ? "block overflow-y-scroll h-fit" : "hidden"
+              className={`absolute left-2/3 transform -translate-x-1/2 mt-2 w-screen max-w-6xl bg-[hsl(var(--mega-menu-bg))] border border-[hsl(var(--mega-menu-border))] shadow-[hsl(var(--mega-menu-shadow))] ring-1 ring-black ring-opacity-5 z-50  transition-all duration-200 ${
+                isMegaMenuOpen ? "block opacity-100 scale-100" : "hidden opacity-0 scale-95"
               }`}
             >
               <div className="p-4">
@@ -348,16 +359,16 @@ const Header = () => {
                   {megaMenuSections.map((section) => (
                     <div key={section.title} className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <h3 className="text-sm font-semibold text-gray-900">
+                        <h3 className="text-sm font-semibold text-[hsl(var(--text-primary))]">
                           {section.title}
                         </h3>
                       </div>
-                      <div >
+                      <div>
                         {section.items.map((item) => (
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="block text-sm text-gray-600 hover:text-blue-500 hover:underline hover:bg-gray-50 px-2 py-1"
+                            className="block text-sm text-[hsl(var(--text-secondary))] hover:text-blue-500 hover:underline hover:bg-[hsl(var(--accent))] px-2 py-1 rounded transition-colors duration-200"
                             onClick={handleMegaMenuClose}
                           >
                             {item.label}
@@ -371,37 +382,45 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 ml-4">
+       
+         
+            
             <Stats numberOfWords={numberOfWords} dollers={moneySaved} />
-            {/* Account Button */}
+         
+
+               {/* Theme Toggle */}
+               {mounted && <ThemeToggle />}
+
+                  {/* Account Button */}
             <ButtonAccount />
-          </div>
+
+        
         </div>
       </nav>
 
       {/* Mobile menu, show/hide based on menu state. */}
       <div className={`relative z-50 ${isOpen ? "" : "hidden"}`}>
         <div
-          className={`fixed inset-y-0 right-0 z-10 bg-white w-full px-4 py-2 overflow-y-auto bg-base-200 sm:max-w-sm  transform origin-right transition ease-in-out duration-300`}
+          className={`fixed inset-y-0 right-0 z-10 bg-[hsl(var(--header-bg))] w-full px-4 py-2 overflow-y-auto border-l border-[hsl(var(--header-border))] transform origin-right transition ease-in-out duration-300`}
         >
           {/* Your logo/name on small screens */}
           <div className="flex items-center justify-between">
             <Link
               href={"/"}
-              className={`flex flex-1 items-center gap-2 px-1.5 py-2  text-gray-900 `}
+              className={`flex flex-1 items-center gap-2 px-1.5 py-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
             >
               <Sparkle
                 strokeWidth={1}
                 color="#F43F5E"
                 fill="#F43F5E"
-                className={"w-6  h-6"}
+                className={"w-6 h-6"}
               />
               <span className="font-extrabold text-2xl">{config.appName}</span>
             </Link>
 
             <button
               type="button"
-              className="-m-2.5 p-2.5"
+              className="-m-2.5 p-2.5 text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -430,10 +449,10 @@ const Header = () => {
                 return (
                   <div key={section.title} className="w-full">
                     <button
-                      className="flex items-center justify-between w-full py-2 px-3 bg-gray-50 hover:bg-gray-100 transition-colors"
+                      className="flex items-center justify-between w-full py-2 px-3 bg-[hsl(var(--accent))] hover:bg-[hsl(var(--muted))] transition-colors duration-200 "
                       onClick={() => toggleMobileSection(section.title)}
                     >
-                      <h3 className="text-sm font-semibold text-gray-900">
+                      <h3 className="text-sm font-semibold text-[hsl(var(--text-primary))]">
                         {section.title}
                       </h3>
                       <svg
@@ -456,7 +475,7 @@ const Header = () => {
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="block px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                            className="block px-4 py-2 text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
                             onClick={() => setIsOpen(false)}
                           >
                             {item.label}
@@ -468,13 +487,17 @@ const Header = () => {
                 );
               })}
 
-              <div className="flex flex-col p-2 gap-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-100">
-                <ButtonAccount />
+              <div className="flex flex-col p-2 gap-2 text-left text-sm font-medium text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200">
+               
+               <div className="flex items-center  gap-2">
+               <ButtonAccount />
+
+                {/* Mobile Theme Toggle */}
+                {mounted && <ThemeToggle />}
+                </div>
                 <Stats numberOfWords={numberOfWords} dollers={moneySaved} />
               </div>
             </div>
-
-            {/* Your CTA on small screens */}
           </div>
         </div>
       </div>

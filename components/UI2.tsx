@@ -287,10 +287,10 @@ const UI2: React.FC<UI2Props> = ({
               <div className="mb-10 flex w-full flex-col gap-4 p-4">
                 {text.toolName && (
                   <div className="flex flex-col gap-3">
-                    <h1 className="w-full text-xl font-bold text-black ">
+                    <h1 className="w-full text-xl font-bold text-[hsl(var(--text-primary))] transition-colors duration-200">
                       {text.toolName}
                     </h1>
-                    <hr />
+                    <hr className="border-[hsl(var(--border))] transition-colors duration-200" />
                   </div>
                 )}
                 {text?.title && text?.title?.name && (
@@ -301,14 +301,14 @@ const UI2: React.FC<UI2Props> = ({
                     </div>
                     <textarea
                       placeholder={text.title.placeholder}
-                      className="w-full border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
+                      className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 text-xs placeholder:text-[9px] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       rows={text?.title?.rows || 2}
                       maxLength={text.title.maxLength}
                       value={prompt.title}
                       onChange={handleTitle}
                     />
                     {text?.title?.hint && (
-                      <div className="w-fit  p-1 text-xs text-gray-800">
+                      <div className="w-fit p-1 text-xs text-[hsl(var(--muted-foreground))] transition-colors duration-200">
                         <svg
                           className="mr-2 inline w-3"
                           fill="currentColor"
@@ -344,7 +344,7 @@ const UI2: React.FC<UI2Props> = ({
                     </div>
                     <textarea
                       placeholder={text.description.placeholder}
-                      className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
+                      className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 text-xs placeholder:text-[9px] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       rows={5}
                       maxLength={text.description.maxLength}
                       value={prompt.description}
@@ -362,7 +362,7 @@ const UI2: React.FC<UI2Props> = ({
                       )}
                     </div>
                     <input
-                      className="w-full  border border-gray-300 p-2"
+                      className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-2 placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       maxLength={text.keywords.maxLength}
                       value={prompt.keywords}
                       onChange={handleKeywords}
@@ -375,7 +375,7 @@ const UI2: React.FC<UI2Props> = ({
                     <div className="text-xs">{text.platform}</div>
                     <select
                       onChange={handlePlatform}
-                      className="w-full  border p-1 px-2 text-xs outline-none"
+                      className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 px-2 text-xs outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                     >
                       <option value="Facebook">Facebook</option>
                       <option value="Instagram">Instagram</option>
@@ -404,7 +404,7 @@ const UI2: React.FC<UI2Props> = ({
                       <div className="text-xs">Language</div>
                       <select
                         onChange={handleLanguage}
-                        className="w-full  border p-1 px-2 text-xs outline-none"
+                        className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 px-2 text-xs outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       >
                         <option value="English">English</option>
                         <option value="Spanish">Spanish</option>
@@ -434,7 +434,7 @@ const UI2: React.FC<UI2Props> = ({
                       <div className="text-xs">Tone</div>
                       <select
                         onChange={handleTone}
-                        className="w-full  border p-1 px-2 text-xs outline-none"
+                        className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 px-2 text-xs outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       >
                         <option value="Professional">Professional</option>
                         <option value="Informative">Informative</option>
@@ -457,7 +457,7 @@ const UI2: React.FC<UI2Props> = ({
                     <div className="text-xs">Time :</div>
                     <select
                       onChange={handleTime}
-                      className=" border-none p-1 px-2 text-xs outline-none"
+                      className="border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 px-2 text-xs outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                     >
                       <option value="30-to-60 seconds">30-to-60 seconds</option>
                       <option value="30 seconds">30 seconds</option>
@@ -470,7 +470,7 @@ const UI2: React.FC<UI2Props> = ({
                   <button
                     disabled={isLoading}
                     onClick={handleApi}
-                    className="mx-auto w-full rounded border bg-rose-600 p-2 text-white shadow-sm outline-none"
+                    className="mx-auto w-full rounded border border-[hsl(var(--border))] bg-rose-600 p-2 text-white shadow-sm outline-none hover:bg-rose-700 transition-colors duration-200"
                   >
                     {isLoading ? "Loading..." : text.btnText}
                   </button>
@@ -490,7 +490,7 @@ const UI2: React.FC<UI2Props> = ({
                 <div
                   id="copy"
                   contentEditable={true}
-                  className="h-[75vh] w-full overflow-y-scroll  border bg-white p-4 placeholder:text-[8px] placeholder:text-gray-600 focus:outline-none"
+                  className="h-[75vh] w-full overflow-y-scroll border border-[hsl(var(--border))] bg-[hsl(var(--card))] text-[hsl(var(--text-primary))] p-4 placeholder:text-[8px] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none transition-colors duration-200"
                 >
                   <WindupChildren>
                     {data?.length ? (
@@ -538,13 +538,13 @@ const UI2: React.FC<UI2Props> = ({
                 </div>
                 <div className="flex justify-center gap-2 p-2 text-xs sm:justify-end">
                   <button
-                    className="mb-1 cursor-pointer border rounded bg-black px-4 py-2 text-white"
+                    className="mb-1 cursor-pointer border border-[hsl(var(--border))] rounded bg-[hsl(var(--text-primary))] px-4 py-2 text-[hsl(var(--background))] hover:bg-[hsl(var(--text-secondary))] transition-colors duration-200"
                     onClick={handleCopyText}
                   >
                     {textCopy ? "Text copied" : "Copy to Clipboard"}
                   </button>
                   <button
-                    className="mb-1 cursor-pointer border rounded bg-rose-600 p-2 text-white"
+                    className="mb-1 cursor-pointer border border-[hsl(var(--border))] rounded bg-rose-600 p-2 text-white hover:bg-rose-700 transition-colors duration-200"
                     onClick={handleClearText}
                   >
                     <svg
@@ -570,10 +570,10 @@ const UI2: React.FC<UI2Props> = ({
               <div className="flex w-full flex-col gap-4 p-4 sm:w-2/5 ">
                 {text.toolName && (
                   <div className="flex flex-col gap-3">
-                    <h1 className="w-full text-xl font-bold text-black ">
+                    <h1 className="w-full text-xl font-bold text-[hsl(var(--text-primary))] transition-colors duration-200">
                       {text.toolName}
                     </h1>
-                    <hr />
+                    <hr className="border-[hsl(var(--border))] transition-colors duration-200" />
                   </div>
                 )}
                 {text?.title && text?.title?.name && (
@@ -584,14 +584,14 @@ const UI2: React.FC<UI2Props> = ({
                     </div>
                     <textarea
                       placeholder={text.title.placeholder}
-                      className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
+                      className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 text-xs placeholder:text-[9px] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       rows={text?.title?.rows || 2}
                       maxLength={text.title.maxLength}
                       value={prompt.title}
                       onChange={handleTitle}
                     />
                     {text?.title?.hint && (
-                      <div className="w-fit  p-1 text-xs text-gray-800">
+                      <div className="w-fit p-1 text-xs text-[hsl(var(--muted-foreground))] transition-colors duration-200">
                         <svg
                           className="mr-2 inline w-3"
                           fill="currentColor"
@@ -627,7 +627,7 @@ const UI2: React.FC<UI2Props> = ({
                     </div>
                     <textarea
                       placeholder={text.description.placeholder}
-                      className="w-full  border border-gray-300 p-1 text-xs placeholder:text-[9px] placeholder:text-gray-600"
+                      className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 text-xs placeholder:text-[9px] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       rows={5}
                       maxLength={text.description.maxLength}
                       value={prompt.description}
@@ -645,7 +645,7 @@ const UI2: React.FC<UI2Props> = ({
                       )}
                     </div>
                     <input
-                      className="w-full  border border-gray-300 p-2"
+                      className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-2 placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       maxLength={text.keywords.maxLength}
                       value={prompt.keywords}
                       onChange={handleKeywords}
@@ -658,7 +658,7 @@ const UI2: React.FC<UI2Props> = ({
                     <div className="text-xs">{text.platform}</div>
                     <select
                       onChange={handlePlatform}
-                      className="w-full  border p-1 px-2 text-xs outline-none"
+                      className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 px-2 text-xs outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                     >
                       <option value="Facebook">Facebook</option>
                       <option value="Instagram">Instagram</option>
@@ -687,7 +687,7 @@ const UI2: React.FC<UI2Props> = ({
                       <div className="text-xs">Language</div>
                       <select
                         onChange={handleLanguage}
-                        className="w-full  border p-1 px-2 text-xs outline-none"
+                        className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 px-2 text-xs outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       >
                         <option value="English">English</option>
                         <option value="Spanish">Spanish</option>
@@ -717,7 +717,7 @@ const UI2: React.FC<UI2Props> = ({
                       <div className="text-xs">Tone</div>
                       <select
                         onChange={handleTone}
-                        className="w-full  border p-1 px-2 text-xs outline-none"
+                        className="w-full border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 px-2 text-xs outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                       >
                         <option value="Professional">Professional</option>
                         <option value="Informative">Informative</option>
@@ -740,7 +740,7 @@ const UI2: React.FC<UI2Props> = ({
                     <div className="text-xs">Time :</div>
                     <select
                       onChange={handleTime}
-                      className=" border-none p-1 px-2 text-xs outline-none"
+                      className="border border-[hsl(var(--border))] bg-transparent text-[hsl(var(--text-primary))] p-1 px-2 text-xs outline-none focus:ring-1 focus:ring-[hsl(var(--ring))] focus:border-[hsl(var(--ring))] transition-colors duration-200"
                     >
                       <option value="30-to-60 seconds">30-to-60 seconds</option>
                       <option value="30 seconds">30 seconds</option>
@@ -753,19 +753,19 @@ const UI2: React.FC<UI2Props> = ({
                   <button
                     disabled={isLoading}
                     onClick={handleApi}
-                    className="mx-auto w-full  border bg-rose-600 p-2 text-white shadow-sm outline-none"
+                    className="mx-auto w-full border border-[hsl(var(--border))] bg-rose-600 p-2 text-white shadow-sm outline-none hover:bg-rose-700 transition-colors duration-200"
                   >
                     {isLoading ? "Loading..." : text.btnText}
                   </button>
                 }
-                {data?.length && data && (
+                {/* {data?.length && data && (
                   <button
                     onClick={handleClearFields}
-                    className="mx-auto w-full border p-2 outline-none"
+                    className="mx-auto w-full border border-[hsl(var(--border))] bg-[hsl(var(--muted))] text-[hsl(var(--text-primary))] p-2 outline-none hover:bg-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--muted))] transition-colors duration-200"
                   >
                     Clear All Fields
                   </button>
-                )}
+                )} */}
               </div>
             )}
             {!mobile && (
@@ -773,7 +773,7 @@ const UI2: React.FC<UI2Props> = ({
                 <div
                   id="copy"
                   contentEditable={true}
-                  className="h-[70vh] w-full overflow-y-scroll  border border-gray-300 bg-white p-4 placeholder:text-[8px] placeholder:text-gray-600 focus:outline-none"
+                  className="h-[70vh] w-full overflow-y-scroll border border-[hsl(var(--border))] bg-[hsl(var(--card))] text-[hsl(var(--text-primary))] p-4 placeholder:text-[8px] placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none transition-colors duration-200"
                 >
                   <WindupChildren>
                     {data?.length ? (
@@ -821,13 +821,13 @@ const UI2: React.FC<UI2Props> = ({
                 </div>
                 <div className="flex justify-center gap-2 p-2 text-xs sm:justify-end">
                   <button
-                    className="mb-1 cursor-pointer border rounded bg-black px-4 py-2 text-white"
+                    className="mb-1 cursor-pointer border border-[hsl(var(--border))] rounded bg-[hsl(var(--text-primary))] px-4 py-2 text-[hsl(var(--background))] hover:bg-[hsl(var(--text-secondary))] transition-colors duration-200"
                     onClick={handleCopyText}
                   >
                     {textCopy ? "Text copied" : "Copy to Clipboard"}
                   </button>
                   <button
-                    className="mb-1 cursor-pointer border rounded bg-rose-600 p-2 text-white"
+                    className="mb-1 cursor-pointer border border-[hsl(var(--border))] rounded bg-rose-600 p-2 text-white hover:bg-rose-700 transition-colors duration-200"
                     onClick={handleClearText}
                   >
                     <svg
@@ -851,11 +851,11 @@ const UI2: React.FC<UI2Props> = ({
             )}
           </div>
 
-          <div className="grid grid-cols-5 gap-5 p-4 m-4 border border-gray-200 ">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 p-4 m-4 border border-[hsl(var(--border))] bg-[hsl(var(--card))] transition-colors duration-200">
             {ToolsLinks.map((section) => (
               <div key={section.title} className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-semibold text-gray-900">
+                  <h3 className="text-sm font-semibold text-[hsl(var(--text-primary))] transition-colors duration-200">
                     {section.title}
                   </h3>
                 </div>
@@ -864,7 +864,7 @@ const UI2: React.FC<UI2Props> = ({
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="block text-sm text-gray-600 hover:text-blue-500 hover:underline hover:bg-gray-50 px-2 py-1 rounded"
+                      className="block text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:underline hover:bg-[hsl(var(--muted))] px-2 py-1 rounded transition-colors duration-200"
                     >
                       {item.label}
                     </Link>

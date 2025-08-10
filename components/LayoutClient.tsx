@@ -8,6 +8,7 @@ import { Crisp } from "crisp-sdk-web";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
 import { Tooltip } from "react-tooltip";
+import { useTheme } from "next-themes";
 import config from "@/config";
 
 // Crisp customer chat support:
@@ -67,10 +68,23 @@ const CrispChat = (): null => {
 // 3. Tooltip: Show tooltips if any JSX elements has these 2 attributes: data-tooltip-id="tooltip" data-tooltip-content=""
 // 4. CrispChat: Set Crisp customer chat support (see above)
 const ClientLayout = ({ children }: { children: ReactNode }) => {
+  const { theme, systemTheme } = useTheme();
+  
+  // Determine the actual theme being used (system preference or manual selection)
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  
+  // Theme-aware progress bar colors
+  const getProgressBarColor = () => {
+    if (currentTheme === 'dark') {
+      return config.colors.progressBar.dark;
+    }
+    return config.colors.progressBar.light;
+  };
+
   return (
     <>
       {/* Show a progress bar at the top when navigating between pages */}
-      <NextTopLoader color={config.colors.main} showSpinner={false} />
+      <NextTopLoader color={getProgressBarColor()} showSpinner={false} />
 
       {/* Content inside app/page.js files  */}
       {children}
