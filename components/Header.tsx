@@ -208,13 +208,13 @@ const Header = () => {
     if (typeof window !== "undefined") {
       window.addEventListener(
         "statsUpdated",
-        handleStatsUpdate as EventListener
+        handleStatsUpdate as any
       );
 
       return () => {
         window.removeEventListener(
           "statsUpdated",
-          handleStatsUpdate as EventListener
+          handleStatsUpdate as any
         );
       };
     }

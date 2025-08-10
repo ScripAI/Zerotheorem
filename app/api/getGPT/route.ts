@@ -6,7 +6,7 @@ import GenratePrompt from '@/components/GenratePrompt';
 
 const MODEL_NAME = 'gemini-2.5-flash';
 const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GL_API_KEY;
-const OPENAI_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 
 const ai = new GoogleGenAI({
   apiKey: GOOGLE_API_KEY,

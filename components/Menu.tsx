@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { pageObj } from './PageObj';
 import Card from './Card';
+import React from 'react';
 
 interface MenuProps {
   className?: string;

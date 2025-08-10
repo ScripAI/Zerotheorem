@@ -475,14 +475,14 @@ const UI2: React.FC<UI2Props> = ({
                     {isLoading ? "Loading..." : text.btnText}
                   </button>
                 }
-                {data?.length && data && (
+                {/* {data?.length && data && (
                   <button
                     onClick={handleClearFields}
                     className="mx-auto w-full rounded border p-2 outline-none"
                   >
                     Clear All Fields
                   </button>
-                )}
+                )} */}
               </div>
             )}
             {show && mobile && (

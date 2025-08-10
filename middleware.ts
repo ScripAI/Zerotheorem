@@ -1,7 +1,19 @@
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/libs/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Match /hashtag and all subpaths
+  if (pathname === '/hashtag' || pathname.startsWith('/hashtag/')) {
+    return new NextResponse('Gone', { status: 410 });
+  }
+
+  // Match /movies and all subpaths
+  if (pathname === '/movies' || pathname.startsWith('/movies/')) {
+    return new NextResponse('Gone', { status: 410 });
+  }
+
   return await updateSession(request);
 }
 
