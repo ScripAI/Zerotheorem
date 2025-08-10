@@ -150,22 +150,16 @@ const megaMenuSections = [
     title: "Educational Tools",
     icon: "🎓",
     items: [
-      { href: "/question-generator", label: "Question Generator" },
-      { href: "/question-answer-generator", label: "Question Answer" },
       { href: "/quiz-generator", label: "Quiz Generator" },
       { href: "/fact-generator", label: "Fact Generator" },
       { href: "/topic-example-generator", label: "Topic Examples" },
-      { href: "/bullet-point-summary", label: "Bullet Point Summary" },
       { href: "/bullet-point-answer", label: "Bullet Point Answer" },
       { href: "/pros-and-cons", label: "Pros and Cons" },
-      { href: "/webinar-title-generator", label: "Webinar Title" },
       { href: "/song-writer", label: "Song Writer" },
       { href: "/poem-writer", label: "Poem Writer" },
       { href: "/definition", label: "Definition" },
-      { href: "/hashtag", label: "Hashtag Generator" },
       { href: "/acronym-generator", label: "Acronym Generator" },
       { href: "/ai-language-translator", label: "Language Translator" },
-      { href: "/ai-tools", label: "Name Generators" },
       { href: "/ai-tools", label: "All Tools" },
     ],
   },
@@ -346,10 +340,10 @@ const Header = () => {
             {/* Mega Menu */}
             <div
               className={`absolute left-1/2  transform -translate-x-1/2 mt-2 w-screen max-w-6xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 z-50 ${
-                isMegaMenuOpen ? "block" : "hidden"
+                isMegaMenuOpen ? "block overflow-y-scroll h-fit" : "hidden"
               }`}
             >
-              <div className="p-6">
+              <div className="p-4">
                 <div className="grid grid-cols-5 gap-5">
                   {megaMenuSections.map((section) => (
                     <div key={section.title} className="space-y-3">
@@ -358,7 +352,7 @@ const Header = () => {
                           {section.title}
                         </h3>
                       </div>
-                      <div className="space-y-2">
+                      <div >
                         {section.items.map((item) => (
                           <Link
                             key={item.href}
