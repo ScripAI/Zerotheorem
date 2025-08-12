@@ -17,14 +17,14 @@ const Stats = ({ numberOfWords, dollers }) => {
       {/* Money Saved */}
       <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] px-3 py-2 shadow-sm  transition-colors duration-200">
         <div className="text-sm font-medium text-[hsl(var(--text-secondary))] transition-colors duration-200">
-          Saved: <span className="font-bold text-[hsl(var(--text-primary))] transition-colors duration-200">${dollers}</span>
+          Saved: <span className="font-bold text-[hsl(var(--text-primary))] transition-colors duration-200">${formatNumber(6000)}</span>
         </div>
       </div>
 
       {/* Tokens Used */}
       <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] px-3 py-2 shadow-sm  transition-colors duration-200">
         <div className="text-sm font-medium text-[hsl(var(--text-secondary))] transition-colors duration-200">
-          Tokens Consumed: <span className="font-bold text-[hsl(var(--text-primary))] transition-colors duration-200">{formatNumber(numberOfWords)}</span>
+          Tokens Used: <span className="font-bold text-[hsl(var(--text-primary))] transition-colors duration-200">{formatNumber(10000)}</span>
         </div>
       </div>
     </div>
