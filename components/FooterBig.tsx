@@ -1,31 +1,36 @@
 /** @format */
+"use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
 import config from '@/config';
-import logo from '@/app/icon.png';
 import { Sparkle } from 'lucide-react';
+import logo from '@/app/logo-2.png';
+import logoDark from '@/app/logo-2-dark.png';
+import { useTheme } from 'next-themes';
 // import AnimatedLogo from './AnimatedLogo';
 // Add the Footer to the bottom of your landing page and more.
 // The support link is connected to the config.js file. If there's no config.mailgun.supportEmail, the link won't be displayed.
 
 const FooterBig = () => {
+  const { resolvedTheme } = useTheme();
+
+  // Get the appropriate logo based on theme
+  const getLogo = () => {
+    return resolvedTheme === "dark" ? logoDark : logo;
+  };
   return (
-    <footer className='w-full mx-auto bg-[hsl(var(--background))] transition-colors duration-200'>
-      <div className='max-w-5xl mx-auto px-8 md:py-24 py-16'>
-        <div className='flex lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col md:gap-40 gap-10'>
+    <footer className='w-full mx-auto'>
+      <div className='max-w-6xl mx-auto px-8 md:py-24 py-16'>
+        <div className='flex justify-between lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col md:gap-40 gap-10'>
           <div className='w-72 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left'>
-          <Link
+       
+
+        <Link
           href={"/"}
-          className={`flex flex-1 items-center gap-2 px-1.5 py-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
+          className={`flex items-center gap-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
         >
-          <Sparkle
-            strokeWidth={1}
-            color="#F43F5E"
-            fill="#F43F5E"
-            className={"w-6 h-6 text-rose-500"}
-          />
-          <span className="font-extrabold text-2xl">{config.appName}</span>
+         <Image src={getLogo()} alt={config.appName} width={80} height={80} />
         </Link>
 
             {/* <AnimatedLogo /> */}

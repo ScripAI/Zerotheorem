@@ -5,181 +5,26 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import ButtonSignin from "./ButtonSignin";
-import logo from "@/app/icon.png";
+import logo from "@/app/logo.png";
+import logoDark from "@/app/logo-dark.png";
 import config from "@/config";
 import { Sparkle } from "lucide-react";
 import ButtonAccount from "./ButtonAccount";
-import Stats from "./Stats";
 import ThemeToggle from "./ThemeToggle";
+import { useTheme } from "next-themes";
 
-const megaMenuSections = [
-  {
-    title: "Social Media",
-    icon: "📱",
-    items: [
-      { href: "/ig-reel-script", label: "IG Script Writer" },
-      { href: "/linkedin-post", label: "LinkedIn Post" },
-      { href: "/linkedin-story-post", label: "LinkedIn Story Post" },
-      { href: "/linkedin-post-hook", label: "LinkedIn Post Hook" },
-      { href: "/facebook-post", label: "Facebook Post" },
-      { href: "/twitter-tweet", label: "Twitter Tweet" },
-      { href: "/twitter-thread", label: "Twitter Thread" },
-      { href: "/twitter-bio", label: "Twitter Bio" },
-      { href: "/instagram-caption", label: "Instagram Caption" },
-      { href: "/tiktok-hook", label: "TikTok Hook" },
-    ],
-  },
-  {
-    title: "Hashtag Generators",
-    icon: "#️⃣",
-    items: [
-      { href: "/hashtag-generator", label: "AI Hashtag Generator" },
-      { href: "/twitter-hashtag", label: "Twitter Hashtag" },
-      { href: "/linkedin-hashtag", label: "LinkedIn Hashtag" },
-      { href: "/tiktok-hashtag", label: "TikTok Hashtag" },
-      { href: "/facebook-hashtag", label: "Facebook Hashtag" },
-      {
-        href: "/facebook-hashtag-generator",
-        label: "Facebook Hashtag Generator",
-      },
-      { href: "/instagram-hashtag", label: "Instagram Hashtag" },
-      { href: "/youtube-hashtag", label: "YouTube Hashtag" },
-    ],
-  },
-  {
-    title: "Video & YouTube",
-    icon: "🎬",
-    items: [
-      { href: "/youtube-hook", label: "YouTube Hook" },
-      { href: "/youtube-intro", label: "YouTube Intro" },
-      { href: "/yt-shorts-script", label: "YT Shorts Script" },
-      { href: "/tiktok-script", label: "TikTok Script Writer" },
-      { href: "/youtube-video-idea", label: "YouTube Video Ideas" },
-      { href: "/youtube-video-outline", label: "YouTube Video Outline" },
-      { href: "/youtube-seo-title", label: "YouTube SEO Title" },
-      { href: "/youtube-seo-description", label: "YouTube SEO Description" },
-      { href: "/youtube-tag", label: "YouTube Tag" },
-    ],
-  },
-  {
-    title: "Content & Writing",
-    icon: "✍️",
-    items: [
-      { href: "/paragraph-writer", label: "Paragraph Writer" },
-      { href: "/sentence-expander", label: "Sentence Expander" },
-      { href: "/sentence-rewriter", label: "Sentence Rewriter" },
-      { href: "/content-rewriter", label: "Content Rewriter" },
-      { href: "/content-idea", label: "Content Ideas" },
-      { href: "/article-rewriter", label: "Article Rewriter" },
-      { href: "/blog-rewriter", label: "Blog Paragraph Rewriter" },
-      { href: "/blog-paragraph-writer", label: "Blog Paragraph Writer" },
-    ],
-  },
-  {
-    title: "Blog & SEO",
-    icon: "📝",
-    items: [
-      { href: "/blog-post-idea", label: "Blog Post Ideas" },
-      { href: "/blog-post-title", label: "Blog Post Title" },
-      { href: "/blog-post-outline", label: "Blog Post Outline" },
-      { href: "/blog-post-hook", label: "Blog Post Hook" },
-      { href: "/seo-keyword-generator", label: "SEO Keyword Generator" },
-      { href: "/seo-title-generator", label: "SEO Title Generator" },
-      {
-        href: "/seo-description-generator",
-        label: "SEO Description Generator",
-      },
-    ],
-  },
-  {
-    title: "Email & Communication",
-    icon: "📧",
-    items: [
-      { href: "/email-subject", label: "Email Subject Generator" },
-      { href: "/cold-email", label: "Cold Email Writer" },
-      { href: "/rewrite-email", label: "Email Rewriter" },
-      { href: "/email-rewriter", label: "Professional Email Rewriter" },
-      { href: "/linkedin-cold-reachout", label: "LinkedIn Cold Reachout" },
-      {
-        href: "/customer-service-response",
-        label: "Customer Service Response",
-      },
-    ],
-  },
-  {
-    title: "Business & Marketing",
-    icon: "💼",
-    items: [
-      { href: "/sales-copy", label: "Sales Copy Generator" },
-      { href: "/homepage-headline-generator", label: "Homepage Headline" },
-      { href: "/call-to-action-generator", label: "Call-to-Action" },
-      { href: "/about-us-generator", label: "About Us" },
-      { href: "/product-features-generator", label: "Product Features" },
-      { href: "/product-benefits-generator", label: "Product Benefits" },
-      { href: "/product-review-generator", label: "Product Review" },
-      { href: "/slogan-generator", label: "Slogan Generator" },
-    ],
-  },
-  {
-    title: "Advertising Tools",
-    icon: "📢",
-    items: [
-      { href: "/facebook-ad-hook", label: "Facebook Ad Hook" },
-      { href: "/facebook-ad-copy", label: "Facebook Ad Copy" },
-      { href: "/instagram-ad-caption", label: "Instagram Ad Caption" },
-      { href: "/instagram-ad-copy", label: "Instagram Ad Copy" },
-      { href: "/linkedin-ad-title", label: "LinkedIn Ad Title" },
-      { href: "/linkedin-ad-copy", label: "LinkedIn Ad Copy" },
-      { href: "/linkedin-ad-description", label: "LinkedIn Ad Description" },
-      { href: "/google-ad-title", label: "Google Ad Title" },
-      { href: "/google-ad-copy", label: "Google Ad Copy" },
-      { href: "/google-ad-description", label: "Google Ad Description" },
-    ],
-  },
-  {
-    title: "Career & Professional",
-    icon: "👔",
-    items: [
-      { href: "/about-me-generator", label: "About Me Generator" },
-      { href: "/resume-hook-generator", label: "Resume Hook" },
-      { href: "/resume-intro-generator", label: "Resume Intro" },
-      { href: "/job-skills-generator", label: "Job Skills" },
-      { href: "/job-description-generator", label: "Job Description" },
-    ],
-  },
-  {
-    title: "Educational Tools",
-    icon: "🎓",
-    items: [
-      { href: "/quiz-generator", label: "Quiz Generator" },
-      { href: "/fact-generator", label: "Fact Generator" },
-      { href: "/topic-example-generator", label: "Topic Examples" },
-      { href: "/bullet-point-answer", label: "Bullet Point Answer" },
-      { href: "/pros-and-cons", label: "Pros and Cons" },
-      { href: "/song-writer", label: "Song Writer" },
-      { href: "/poem-writer", label: "Poem Writer" },
-      { href: "/definition", label: "Definition" },
-      { href: "/acronym-generator", label: "Acronym Generator" },
-      { href: "/ai-language-translator", label: "Language Translator" },
-      { href: "/ai-tools", label: "All Tools" },
-    ],
-  },
-];
-
-// A header with a logo on the left, dropdown menus in the center, and a CTA on the right.
+// A header with a logo on the left, and a CTA on the right.
 // The header is responsive, and on mobile, the links are hidden behind a burger button.
 const Header = () => {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
 
-  // Mobile menu section toggles - all sections closed by default
-  const [openSections, setOpenSections] = useState<Set<string>>(new Set());
-
-  // Stats state management
-  const [numberOfWords, setNumberOfWords] = useState(0);
-  const [moneySaved, setMoneySaved] = useState(30);
+  // Get the appropriate logo based on theme
+  const getLogo = () => {
+    return resolvedTheme === "dark" ? logoDark : logo;
+  };
 
   // Avoid hydration mismatch for theme
   useEffect(() => {
@@ -191,110 +36,19 @@ const Header = () => {
     setIsOpen(false);
   }, [searchParams]);
 
-  // Load stats from localStorage
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const localWords = localStorage.getItem("numberOfWords");
-      const initialNumberOfWords = Number(localWords) || 0;
-      setNumberOfWords(initialNumberOfWords);
-
-      const localMoney = localStorage.getItem("moneySaved") || "30";
-      const initialMoneySaved = Number(localMoney);
-      setMoneySaved(initialMoneySaved);
-    }
-  }, []);
-
-  // Listen for stats updates from other components
-  useEffect(() => {
-    const handleStatsUpdate = (event: CustomEvent) => {
-      const { numberOfWords: newWords, moneySaved: newMoney } = event.detail;
-      setNumberOfWords(newWords);
-      setMoneySaved(newMoney);
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener(
-        "statsUpdated",
-        handleStatsUpdate as any
-      );
-
-      return () => {
-        window.removeEventListener(
-          "statsUpdated",
-          handleStatsUpdate as any
-        );
-      };
-    }
-  }, []);
-
-  const handleMegaMenuToggle = () => {
-    setIsMegaMenuOpen(!isMegaMenuOpen);
-  };
-
-  const handleMegaMenuClose = () => {
-    setIsMegaMenuOpen(false);
-  };
-
-  const toggleMobileSection = (sectionTitle: string) => {
-    setOpenSections((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(sectionTitle)) {
-        newSet.delete(sectionTitle);
-      } else {
-        newSet.add(sectionTitle);
-      }
-      return newSet;
-    });
-  };
-
-  // Close mega menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const megaMenuContainer = document.querySelector(
-        "[data-mega-menu-container]"
-      );
-
-      if (
-        isMegaMenuOpen &&
-        megaMenuContainer &&
-        !megaMenuContainer.contains(target)
-      ) {
-        setIsMegaMenuOpen(false);
-      }
-    };
-
-    if (isMegaMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isMegaMenuOpen]);
-
-
-
   return (
-    <header className="sticky top-0 z-50 bg-[hsl(var(--header-bg))] border-b border-[hsl(var(--header-border))] transition-colors duration-200">
+    <header className="sticky top-0 z-50 bg-[hsl(var(--header-bg))] border-[hsl(var(--header-border))] transition-colors duration-200">
       <nav
-        className="flex items-center max-w-5xl justify-between py-2 px-4 mx-auto"
+        className="flex items-center max-w-6xl justify-between py-2 px-4 mx-auto"
         aria-label="Global"
       >
-        {/* Your logo/name on large screens */}
-        <Link
+          {/* Your logo/name on large screens */}
+          <Link
           href={"/"}
-          className={`flex items-center gap-2 px-1.5 py-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
+          className={`flex items-center gap-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
         >
-          <Sparkle
-            strokeWidth={1}
-            color="#F43F5E"
-            fill="#F43F5E"
-            className={"w-6 h-6 text-rose-500"}
-          />
-          <span className="font-extrabold text-2xl">{config.appName}</span>
+         <Image src={getLogo()} alt={config.appName} width={150} height={80} />
         </Link>
-
 
         {/* Burger button to open menu on mobile */}
         <div className="flex lg:hidden">
@@ -321,80 +75,35 @@ const Header = () => {
           </button>
         </div>
 
-        {/* All Tools Mega Menu on large screens */}
-        <div className="hidden lg:flex  lg:justify-center lg:items-center gap-3">
-
-          
-          <div className="relative" data-mega-menu-container>
-            <button
-              className="flex items-center gap-1 px-3 py-2 border border-[hsl(var(--border))] text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] bg-[hsl(var(--card))] hover:bg-[hsl(var(--accent))] transition-colors duration-200 "
-              onClick={handleMegaMenuToggle}
+        {/* Right side elements on large screens */}
+        <div className="hidden lg:flex lg:justify-end lg:items-center gap-3">
+          {/* Navigation Links */}
+          <div className="flex items-center gap-6 mr-4">
+            <Link
+              href="/performance"
+              className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
             >
-              All Tools
-              <svg
-                className={`w-4 h-4 transition-transform ${
-                  isMegaMenuOpen ? "rotate-180" : ""
-                }`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-
-            {/* Mega Menu */}
-            <div
-              className={`absolute left-2/3 transform -translate-x-1/2 mt-2 w-screen max-w-6xl bg-[hsl(var(--mega-menu-bg))] border border-[hsl(var(--mega-menu-border))] shadow-[hsl(var(--mega-menu-shadow))] ring-1 ring-black ring-opacity-5 z-50  transition-all duration-200 ${
-                isMegaMenuOpen ? "block opacity-100 scale-100" : "hidden opacity-0 scale-95"
-              }`}
+              Performance
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
             >
-              <div className="p-4">
-                <div className="grid grid-cols-5 gap-5">
-                  {megaMenuSections.map((section) => (
-                    <div key={section.title} className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-sm font-semibold text-[hsl(var(--text-primary))]">
-                          {section.title}
-                        </h3>
-                      </div>
-                      <div>
-                        {section.items.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block text-sm text-[hsl(var(--text-secondary))] hover:text-blue-500 hover:underline hover:bg-[hsl(var(--accent))] px-2 py-1 rounded transition-colors duration-200"
-                            onClick={handleMegaMenuClose}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
+            >
+              Contact
+            </Link>
           </div>
 
-       
-         
-            
-            <Stats numberOfWords={numberOfWords} dollers={moneySaved} />
-         
+          {/* Theme Toggle */}
+          {mounted && <ThemeToggle />}
 
-               {/* Theme Toggle */}
-               {mounted && <ThemeToggle />}
-
-                  {/* Account Button */}
-            <ButtonAccount />
-
-        
+          {/* Account Button */}
+          <ButtonAccount />
         </div>
       </nav>
 
@@ -405,18 +114,13 @@ const Header = () => {
         >
           {/* Your logo/name on small screens */}
           <div className="flex items-center justify-between">
-            <Link
-              href={"/"}
-              className={`flex flex-1 items-center gap-2 px-1.5 py-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
-            >
-              <Sparkle
-                strokeWidth={1}
-                color="#F43F5E"
-                fill="#F43F5E"
-                className={"w-6 h-6"}
-              />
-              <span className="font-extrabold text-2xl">{config.appName}</span>
-            </Link>
+         
+          <Link
+          href={"/"}
+          className={`flex items-center gap-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
+        >
+         <Image src={getLogo()} alt={config.appName} width={150} height={80} />
+         </Link>
 
             <button
               type="button"
@@ -441,51 +145,33 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Mobile tools sections */}
+          {/* Mobile menu content */}
           <div className="mt-2">
             <div className="flex flex-col gap-y-3 ml-2 items-start">
-              {megaMenuSections.map((section) => {
-                const isOpen = openSections.has(section.title);
-                return (
-                  <div key={section.title} className="w-full">
-                    <button
-                      className="flex items-center justify-between w-full py-2 px-3 bg-[hsl(var(--accent))] hover:bg-[hsl(var(--muted))] transition-colors duration-200 "
-                      onClick={() => toggleMobileSection(section.title)}
-                    >
-                      <h3 className="text-sm font-semibold text-[hsl(var(--text-primary))]">
-                        {section.title}
-                      </h3>
-                      <svg
-                        className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
-                    {isOpen && (
-                      <div className="space-y-1 ml-1">
-                        {section.items.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="block px-4 py-2 text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              {/* Mobile Navigation Links */}
+              <div className="flex flex-col w-full gap-1">
+                <Link
+                  href="/performance"
+                  className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Performance
+                </Link>
+                <Link
+                  href="/about"
+                  className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  href="/contact"
+                  className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Contact
+                </Link>
+              </div>
 
               <div className="flex flex-col p-2 gap-2 text-left text-sm font-medium text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200">
                
@@ -495,7 +181,6 @@ const Header = () => {
                 {/* Mobile Theme Toggle */}
                 {mounted && <ThemeToggle />}
                 </div>
-                <Stats numberOfWords={numberOfWords} dollers={moneySaved} />
               </div>
             </div>
           </div>

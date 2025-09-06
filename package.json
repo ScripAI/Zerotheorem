@@ -23,6 +23,7 @@
     "eslint-config-next": "^14.2.0",
     "form-data": "^4.0.0",
     "gcp-metadata": "^7.0.1",
+    "gsap": "^3.13.0",
     "lucide-react": "^0.539.0",
     "next": "^14.2.0",
     "next-sitemap": "^4.2.3",
@@ -40,6 +41,7 @@
     "resend": "^4.0.1",
     "stripe": "^13.11.0",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.175.0",
     "typewriter-effect": "^2.22.0",
     "windups": "^1.2.2",
     "zod": "^3.22.4"
@@ -52,6 +54,7 @@
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "@types/react-syntax-highlighter": "^15.5.11",
+    "@types/three": "^0.175.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
