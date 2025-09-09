@@ -79,12 +79,19 @@ const Header = () => {
         <div className="hidden lg:flex lg:justify-end lg:items-center gap-3">
           {/* Navigation Links */}
           <div className="flex items-center gap-6 mr-4">
+          <Link
+              href="/"  
+              className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
+            >
+              Home
+            </Link>
             <Link
               href="/performance"
               className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
             >
               Performance
             </Link>
+            
             <Link
               href="/about"
               className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
@@ -97,6 +104,7 @@ const Header = () => {
             >
               Contact
             </Link>
+            
           </div>
 
           {/* Theme Toggle */}
@@ -150,6 +158,14 @@ const Header = () => {
             <div className="flex flex-col gap-y-3 ml-2 items-start">
               {/* Mobile Navigation Links */}
               <div className="flex flex-col w-full gap-1">
+         
+                <Link
+                  href="/"
+                  className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                    Home
+                </Link>
                 <Link
                   href="/performance"
                   className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"

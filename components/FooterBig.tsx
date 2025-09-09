@@ -23,62 +23,53 @@ const FooterBig = () => {
     <footer className='w-full mx-auto'>
       <div className='max-w-6xl mx-auto px-8 md:py-24 py-16'>
         <div className='flex justify-between lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col md:gap-40 gap-10'>
-          <div className='w-72 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left'>
+          <div className='w-72 flex-shrink-0 mx-0  text-left'>
        
 
         <Link
           href={"/"}
-          className={`flex items-center gap-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
+          className={`flex items-center justify-start gap-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
         >
          <Image src={getLogo()} alt={config.appName} width={80} height={80} />
         </Link>
 
-            {/* <AnimatedLogo /> */}
-
-            {/* <p className='mt-3 text-sm text-base-content/80'>
-                100% Free AI Content Writer
-            </p> */}
             <p className='mt-3 ml-2 text-xs text-[hsl(var(--text-secondary))] transition-colors duration-200'>
               Copyright © {new Date().getFullYear()} - All rights reserved
             </p>
           </div>
           <div className='flex md:flex-row flex-col justify-end md:gap-10'>
-            <div className='px-4 md:text-left text-center w-full'>
+            <div className='px-4 text-left w-full'>
               <div className='footer-title font-semibold text-[hsl(var(--text-primary))] tracking-widest text-sm mb-3 transition-colors duration-200'>
                 LINKS
               </div>
 
               <div className='flex flex-col justify-center gap-2 mb-10 text-sm'>
                 <Link
-                  href='/#'
+                  href='/'
                   className='link link-hover text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'>
                   Home
                 </Link>
                 <Link
-                  href='/manifesto'
+                  href='/performance'
                   className='link link-hover text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'>
-                  Manifesto
+                  Performance
                 </Link>
-                {config.resend.supportEmail && (
-                  <a
-                    href={`mailto:${config.resend.supportEmail}`}
-                    target='_blank'
-                    className='link link-hover text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'
-                    aria-label='Contact Support'>
-                    Help
-                  </a>
-                )}
+                <Link
+                  href='/about'
+                  className='link link-hover text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'>
+                  About
+                </Link>
               </div>
             </div>
 
-            <div className='px-4 md:text-left text-center w-full'>
+            <div className='px-4 text-left w-full'>
               <div className='footer-title font-semibold text-[hsl(var(--text-primary))] tracking-widest text-sm mb-3 transition-colors duration-200'>
                 LEGAL
               </div>
 
               <div className='flex flex-col justify-center gap-2 mb-10 text-sm'>
                 <Link
-                  href='/tos'
+                  href='/tc'
                   className='link link-hover whitespace-nowrap text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'>
                   Terms of services
                 </Link>
@@ -87,20 +78,20 @@ const FooterBig = () => {
                   className='link link-hover whitespace-nowrap text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'>
                   Privacy policy
                 </Link>
+                <Link
+                  href='/contact'
+                  className='link link-hover whitespace-nowrap text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'>
+                  Contact
+                </Link>
               </div>
             </div>
 
-            <div className='px-4 md:text-left text-center w-full'>
+            <div className='px-4 text-left w-full'>
               <div className='footer-title font-semibold text-[hsl(var(--text-primary))] tracking-widest text-sm mb-3 transition-colors duration-200'>
                 SOCIAL
               </div>
 
               <div className='flex flex-col justify-center gap-2 mb-10 text-sm'>
-                <Link
-                  href='https://www.linkedin.com/in/sagarjaid/'
-                  className='link link-hover text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'>
-                  Instagram
-                </Link>
                 <Link
                   href='https://www.linkedin.com/in/sagarjaid/'
                   className='link link-hover text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] transition-colors duration-200'>

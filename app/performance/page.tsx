@@ -2,6 +2,7 @@ import Image from "next/image";
 import SEOMeta from "@/components/SEOMeta";
 import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
+import LineChart from "@/components/LineChart";
 import { Suspense } from "react";
 
 interface MetricItem {
@@ -75,23 +76,27 @@ export default async function PerformancePage() {
       <Suspense>
         <Header />
       </Suspense>
-      <main className="container mx-auto px-4 py-10 md:py-16">
+      <main className="container  max-w-6xl mx-auto px-4 py-10">
         <SEOMeta
           title="Historical Performance | Zerotheorem"
           description="Strategy performance metrics including returns, risk statistics, and benchmark comparisons."
           slug="/performance"
         />
 
+        <section className="mb-8">
+          <LineChart />
+        </section>
+
         <section>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-6">
             {metrics.map((item) => (
               <div
                 key={item.label}
                 className="card bg-base-200/40 border border-base-300/40"
               >
-                <div className="card-body p-5 md:p-6">
-                  <p className="text-sm opacity-80">{item.label}</p>
-                  <h3 className="text-2xl md:text-3xl font-bold">
+                <div className="card-body p-4">
+                  <p className="text-xs opacity-80 mb-2">{item.label}</p>
+                  <h3 className="text-xl font-bold">
                     {item.value}
                   </h3>
                   {item.helper ? (

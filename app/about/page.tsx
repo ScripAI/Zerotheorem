@@ -29,7 +29,7 @@ const Home = () => {
       {/* <main className="m-auto h-screen flex flex-col bg-[url('/bg.gif')] bg-cover bg-center bg-no-repeat"> */}
       <main className="m-auto flex flex-col">
         <div className="flex justify-between md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden gap-4 m-auto items-center p-10 md:pt-24">
-          <div className="flex flex-col gap-3 max-w-lg mt-12">
+          <div className="flex flex-col gap-3 md:max-w-lg mt-12 w-full">
             <div className="text-base">Our Mission</div>
 
             <div className="md:text-4xl text-3xl font-extrabold">
@@ -70,7 +70,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex justify-center max-w-6xl w-full overflow-hidden gap-8 m-auto items-center p-10">
+        <div className="flex md:flex-row flex-col justify-center max-w-6xl w-full overflow-hidden gap-8 m-auto items-center p-10">
           <div>
             <div className="text-base"> Who are we?</div>
             <div className="text-sm mt-2 text-justify">

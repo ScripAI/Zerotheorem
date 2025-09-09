@@ -39,8 +39,8 @@ const Home = () => {
           />
         </div> */}
 
-        <div className="flex md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden m-auto items-center justify-center px-4 py-10 md:py-24">
-          <div className="flex flex-col gap-3">
+        <div className="flex md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden m-auto items-center justify-center px-8 py-10 md:py-24">
+          <div className="flex flex-col gap-3 w-full">
             <div className="text-sm ml-1">We Are Scientists Searching for</div>
             <div className="md:text-5xl text-3xl font-extrabold">
               Asymmetric Returns{" "}

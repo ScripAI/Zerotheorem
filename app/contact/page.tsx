@@ -33,7 +33,7 @@ const Home = () => {
        
 
         <div className="flex justify-between md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden gap-8 m-auto items-center p-10 md:py-24">
-          <div className="flex flex-col gap-3 mt-2">
+          <div className="flex flex-col gap-3 mt-2 w-full md:max-w-lg">
             <div className="md:text-4xl text-3xl mb-2 font-extrabold">
               ZERO THEOREM PTY LTD
             </div>
