@@ -1,11 +1,11 @@
 const config = {
   // REQUIRED
-  appName: "ScripAI",
+  appName: "ZeroTheorem",
   // REQUIRED: a short description of your app for SEO tags (can be overwritten)
   appDescription:
-    "Boost your productivity with over 100+ FREE AI tools - No login required. No credit card required. Discover the power of Scrip AI and revolutionize your workflow.",
+    "ZeroTheorem is an investment firm specializing in asymmetric returns from nascent technologies. We invest early in emerging trends before they hit the mainstream, maximizing utility while minimizing downside risk.",
   // REQUIRED (no https://, not trialing slash at the end, just the naked domain)
-  domainName: "scripai.com",
+  domainName: "zerotheorem.com",
   crisp: {
     // Crisp website ID. IF YOU DON'T USE CRISP: just remove this => Then add a support email in this config file (resend.supportEmail) otherwise customer support won't work.
     id: "",

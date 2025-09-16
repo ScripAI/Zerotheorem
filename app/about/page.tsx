@@ -1,24 +1,40 @@
-"use client";
-
-import { pageObj } from "@/components/PageObj";
-import Typewriter from "typewriter-effect";
-import HelloBar from "@/components/HelloBar";
-import Card from "@/components/Card";
 import { Suspense } from "react";
 import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
 import aboutHero from "@/app/about-hero.gif";
-import bg from "@/app/bg.gif";
+import bg from "@/app/about-hero.gif";
 import stats from "@/app/stats.png";
-
-import dynamic from "next/dynamic";
 import ButtonLearnMore from "@/components/ButtonLearnMore";
+import { getSEOTags } from "@/libs/seo";
+import type { Metadata } from "next";
 
-const ParticleHead = dynamic(() => import("@/components/ParticleHead"), {
-  ssr: false,
+// SEO metadata for the about page
+export const metadata: Metadata = getSEOTags({
+  title: "About ZeroTheorem - Investment Philosophy & Mission",
+  description:
+    "Learn about ZeroTheorem's mission to maximize investment utility while minimizing downside risk. Our team of PhD scientists focuses on early-stage technology investments and uncorrelated income streams.",
+  keywords: [
+    "about zerotheorem",
+    "investment philosophy",
+    "investment mission",
+    "PhD scientists",
+    "early stage investing",
+    "technology investments",
+    "risk management",
+    "uncorrelated income",
+    "investment strategy",
+    "corporate services",
+  ],
+  canonicalUrlRelative: "/about",
+  openGraph: {
+    title: "About ZeroTheorem - Investment Philosophy & Mission",
+    description:
+      "Learn about ZeroTheorem's mission to maximize investment utility while minimizing downside risk through early-stage technology investments.",
+    url: "https://zerotheorem.com/about",
+  },
 });
 
-const Home = () => {
+const About = () => {
   return (
     <>
       {/* <HelloBar /> */}
@@ -109,9 +125,7 @@ const Home = () => {
             please feel free to contact us directly.
           </div>
 
-
-<ButtonLearnMore href="/contact" text="Contact" className="mt-6" />
-        
+          <ButtonLearnMore href="/contact" text="Contact" className="mt-6" />
         </div>
 
         <FooterBig />
@@ -120,4 +134,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default About;

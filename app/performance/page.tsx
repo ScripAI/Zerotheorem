@@ -1,9 +1,10 @@
 import Image from "next/image";
-import SEOMeta from "@/components/SEOMeta";
 import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
 import LineChart from "@/components/LineChart";
 import { Suspense } from "react";
+import { getSEOTags } from "@/libs/seo";
+import type { Metadata } from "next";
 
 interface MetricItem {
   label: string;
@@ -16,7 +17,8 @@ interface ApiRow {
 }
 
 async function getMetrics(): Promise<MetricItem[]> {
-  const url = "https://api.sheety.co/277b72d8965eafe86b5880836f10c1a1/performance/sheet1";
+  const url =
+    "https://api.sheety.co/277b72d8965eafe86b5880836f10c1a1/performance/sheet1";
 
   try {
     const res = await fetch(url, { cache: "no-store" });
@@ -35,17 +37,51 @@ async function getMetrics(): Promise<MetricItem[]> {
     };
 
     const metrics: MetricItem[] = [
-      { label: "Return to Date (Aug.2025)", value: pct(row["returnToDate (aug2025)"]) },
-      { label: "Est. Annualised Return", value: pct(row["estAnnualisedReturn"]) },
+      {
+        label: "Return to Date (Aug.2025)",
+        value: pct(row["returnToDate (aug2025)"]),
+      },
+      {
+        label: "Est. Annualised Return",
+        value: pct(row["estAnnualisedReturn"]),
+      },
       { label: "Est. Sharpe Ratio", value: num(row["estSharpeRatio"]) },
       { label: "Est. Sortino Ratio", value: num(row["estSortinoRatio"]) },
-      { label: "Maximum Drawdown Exp.", value: `${(typeof row["maximumDrawdownExp"] === "number" ? (row["maximumDrawdownExp"] as number) * 100 : NaN).toFixed(2)}%`.replace("NaN%", "-") },
-      { label: "Recovery Time Exp.", value: typeof row["recoveryTimeExp"] === "string" ? (row["recoveryTimeExp"] as string) : "-" },
-      { label: "Win Rate Exp", value: typeof row["winRateExp"] === "number" ? `${(row["winRateExp"] as number).toFixed(1)}%` : "-" },
+      {
+        label: "Maximum Drawdown Exp.",
+        value:
+          `${(typeof row["maximumDrawdownExp"] === "number" ? (row["maximumDrawdownExp"] as number) * 100 : NaN).toFixed(2)}%`.replace(
+            "NaN%",
+            "-"
+          ),
+      },
+      {
+        label: "Recovery Time Exp.",
+        value:
+          typeof row["recoveryTimeExp"] === "string"
+            ? (row["recoveryTimeExp"] as string)
+            : "-",
+      },
+      {
+        label: "Win Rate Exp",
+        value:
+          typeof row["winRateExp"] === "number"
+            ? `${(row["winRateExp"] as number).toFixed(1)}%`
+            : "-",
+      },
       { label: "Est. Beta", value: num(row["estBeta"]) },
-      { label: "Standard Deviation Exp.", value: num(row["standardDeviationExp"]) },
-      { label: "BTC Rolling Volatility", value: num(row["btcRollingVolatility"]) },
-      { label: "BTC Return (Aug.2025)", value: pct(row["btcReturn (aug2025)"]) },
+      {
+        label: "Standard Deviation Exp.",
+        value: num(row["standardDeviationExp"]),
+      },
+      {
+        label: "BTC Rolling Volatility",
+        value: num(row["btcRollingVolatility"]),
+      },
+      {
+        label: "BTC Return (Aug.2025)",
+        value: pct(row["btcReturn (aug2025)"]),
+      },
       { label: "Est. Alpha", value: num(row["estAlpha"]) },
     ];
 
@@ -69,6 +105,32 @@ async function getMetrics(): Promise<MetricItem[]> {
   }
 }
 
+// SEO metadata for the performance page
+export const metadata: Metadata = getSEOTags({
+  title: "Historical Performance | ZeroTheorem Investment Strategy",
+  description:
+    "View ZeroTheorem's investment performance metrics including returns, risk statistics, Sharpe ratio, and benchmark comparisons. Transparent reporting on our asymmetric returns strategy.",
+  keywords: [
+    "investment performance",
+    "portfolio returns",
+    "Sharpe ratio",
+    "risk metrics",
+    "investment strategy",
+    "asymmetric returns",
+    "performance tracking",
+    "investment analytics",
+    "risk-adjusted returns",
+    "benchmark comparison",
+  ],
+  canonicalUrlRelative: "/performance",
+  openGraph: {
+    title: "Historical Performance | ZeroTheorem Investment Strategy",
+    description:
+      "View ZeroTheorem's investment performance metrics including returns, risk statistics, and benchmark comparisons.",
+    url: "https://zerotheorem.com/performance",
+  },
+});
+
 export default async function PerformancePage() {
   const metrics = await getMetrics();
   return (
@@ -77,12 +139,6 @@ export default async function PerformancePage() {
         <Header />
       </Suspense>
       <main className="container  max-w-6xl mx-auto px-4 py-10">
-        <SEOMeta
-          title="Historical Performance | Zerotheorem"
-          description="Strategy performance metrics including returns, risk statistics, and benchmark comparisons."
-          slug="/performance"
-        />
-
         <section className="mb-8">
           <LineChart />
         </section>
@@ -96,9 +152,7 @@ export default async function PerformancePage() {
               >
                 <div className="card-body p-4">
                   <p className="text-xs opacity-80 mb-2">{item.label}</p>
-                  <h3 className="text-xl font-bold">
-                    {item.value}
-                  </h3>
+                  <h3 className="text-xl font-bold">{item.value}</h3>
                   {item.helper ? (
                     <span className="text-xs opacity-60">{item.helper}</span>
                   ) : null}

@@ -1,24 +1,41 @@
-"use client";
-
-import { pageObj } from "@/components/PageObj";
-import Typewriter from "typewriter-effect";
-import HelloBar from "@/components/HelloBar";
-import Card from "@/components/Card";
 import { Suspense } from "react";
 import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
 import ButtonLearnMore from "@/components/ButtonLearnMore";
-import aboutHero from "@/app/about-hero.gif";
-import bg from "@/app/bg.gif";
-import dynamic from "next/dynamic";
+import pattern from "@/app/pattern-1.gif";
+import { getSEOTags, renderSchemaTags } from "@/libs/seo";
+import type { Metadata } from "next";
 
-const ParticleHead = dynamic(() => import("@/components/ParticleHead"), {
-  ssr: false,
+// SEO metadata for the home page
+export const metadata: Metadata = getSEOTags({
+  title: "ZeroTheorem - Asymmetric Returns in Nascent Technologies",
+  description:
+    "ZeroTheorem is an investment firm specializing in asymmetric returns from nascent technologies. We invest early in emerging trends before they hit the mainstream, maximizing utility while minimizing downside risk.",
+  keywords: [
+    "investment firm",
+    "nascent technologies",
+    "asymmetric returns",
+    "early stage investing",
+    "blockchain investment",
+    "cryptocurrency investment",
+    "venture capital",
+    "alternative investments",
+    "risk management",
+    "portfolio optimization",
+  ],
+  canonicalUrlRelative: "/",
+  openGraph: {
+    title: "ZeroTheorem - Asymmetric Returns in Nascent Technologies",
+    description:
+      "Investment firm specializing in early-stage technology investments with focus on asymmetric returns and risk minimization.",
+    url: "https://zerotheorem.com/",
+  },
 });
 
 const Home = () => {
   return (
     <>
+      {renderSchemaTags()}
       {/* <HelloBar /> */}
       <Suspense>
         <Header />
@@ -27,7 +44,6 @@ const Home = () => {
       {/* <main className="m-auto h-screen flex flex-col bg-[url('/bg.gif')] bg-cover bg-center bg-no-repeat"> */}
       {/* <main className="m-auto flex flex-col bg-[url('/bg-grid.svg')] bg-cover bg-center bg-no-repeat"> */}
       <main className="m-auto flex flex-col">
-
         {/* <div className="flex flex-col items-center justify-center">
       <img src={aboutHero.src} className="w-1/2 text-center h-full object-cover" />
       </div> */}
@@ -49,13 +65,17 @@ const Home = () => {
               In Nascent Technologies{" "}
             </div>
 
-            <div className="text-xs mt-1.5 font-light text-gray-700">
+            <div className="text-xs mt-1.5 font-light text-gray-400">
               We invest early, before trends hit the mainstream
             </div>
             <ButtonLearnMore href="/about" text="Learn More" className="mt-6" />
           </div>
 
-          <ParticleHead />
+          {/* <ParticleHead /> */}
+          <img
+            src={pattern.src}
+            className="w-full max-w-[480px] text-center h-full object-cover"
+          />
         </div>
 
         <FooterBig />

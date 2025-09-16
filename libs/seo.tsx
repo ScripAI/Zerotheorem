@@ -36,7 +36,7 @@ export const getSEOTags = ({
       title: openGraph?.title || config.appName,
       description: openGraph?.description || config.appDescription,
       url: openGraph?.url || `https://${config.domainName}/`,
-      siteName: openGraph?.title || config.appName,
+      siteName: config.appName,
       // If you add an opengraph-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
       // images: [
       //   {
@@ -55,7 +55,7 @@ export const getSEOTags = ({
       // If you add an twitter-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
       // images: [openGraph?.image || defaults.og.image],
       card: "summary_large_image",
-      creator: "@marc_louvion",
+      creator: "@zerotheorem",
     },
 
     // If a canonical URL is given, we add it. The metadataBase will turn the relative URL into a fully qualified URL
@@ -63,16 +63,32 @@ export const getSEOTags = ({
       alternates: { canonical: canonicalUrlRelative },
     }),
 
+    // Additional SEO meta tags
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large" as const,
+        "max-snippet": -1,
+      },
+    },
+    verification: {
+      google: process.env.GOOGLE_SITE_VERIFICATION,
+    },
+
     // If you want to add extra tags, you can pass them here
     ...extraTags,
   };
 };
 
-// Strctured Data for Rich Results on Google. Learn more: https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data
-// Find your type here (SoftwareApp, Book...): https://developers.google.com/search/docs/appearance/structured-data/search-gallery
+// Structured Data for Rich Results on Google. Learn more: https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data
+// Find your type here (Organization, FinancialService...): https://developers.google.com/search/docs/appearance/structured-data/search-gallery
 // Use this tool to check that the data is well structured: https://search.google.com/test/rich-results
 // You don't have to use this component, but it increases your chances of having a rich snippet on Google.
-// I recommend adding the one below to your /page.js for software apps: It tells Google that your AppName is a SoftwareApplication, and it has a rating of 4.8/5 from 12 reviews.
+// I recommend adding the one below to your /page.js for investment firms: It tells Google that ZeroTheorem is a FinancialService organization.
 // Fill in the fields with your own data.
 // See https://shipfa.st/docs/features/seo
 export const renderSchemaTags = () => {
@@ -82,29 +98,30 @@ export const renderSchemaTags = () => {
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "http://schema.org",
-          "@type": "SoftwareApplication",
+          "@type": "Organization",
           name: config.appName,
           description: config.appDescription,
-          image: `https://${config.domainName}/icon.png`,
+          image: `https://${config.domainName}/logo.png`,
           url: `https://${config.domainName}/`,
-          author: {
-            "@type": "Person",
-            name: "Marc Lou",
+          logo: `https://${config.domainName}/logo.png`,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "81-83 Campbell Street",
+            addressLocality: "Surry Hills",
+            addressRegion: "NSW",
+            postalCode: "2010",
+            addressCountry: "AU",
           },
-          datePublished: "2023-08-01",
-          applicationCategory: "EducationalApplication",
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.8",
-            ratingCount: "12",
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+61 402 692545",
+            contactType: "customer service",
+            email: "kh@zerotheorem.com",
           },
-          offers: [
-            {
-              "@type": "Offer",
-              price: "9.00",
-              priceCurrency: "USD",
-            },
-          ],
+          sameAs: ["https://www.linkedin.com/company/zerotheorem"],
+          foundingDate: "2023",
+          industry: "Investment Management",
+          serviceType: "Financial Services",
         }),
       }}
     ></script>
