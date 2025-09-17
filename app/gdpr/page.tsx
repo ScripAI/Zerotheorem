@@ -34,8 +34,11 @@ const PrivacyPolicy = () => {
   return (
     <main className="max-w-xl mx-auto">
       <div className="p-5">
-      <Link href="/" className="flex items-center gap-2 text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200 border border-[hsl(var(--border))] px-2 py-1 w-fit pr-6">
-      <svg
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200 border border-[hsl(var(--border))] px-2 py-1 w-fit pr-6"
+        >
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -59,7 +62,7 @@ const PrivacyPolicy = () => {
         >
           {`Updated on 1 April, 2024
 
-At Zerotheorem, accessible from https://scripai.com/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Zerotheorem and how we use it.
+At Zerotheorem, accessible from https://zerotheorem.com/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Zerotheorem and how we use it.
 
 General Data Protection Regulation (GDPR)
 

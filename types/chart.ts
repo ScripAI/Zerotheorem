@@ -1,8 +1,8 @@
 export interface ChartDataPoint {
   date: string;
   btc: number;
-  ztc: number;
-  "3Rd": number;
+  spy: number;
+  zt: number;
   id: number;
 }
 

@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
-import bg from "@/app/bg.gif";
+import bg from "@/app/about-3.gif";
+
 import { getSEOTags } from "@/libs/seo";
 import type { Metadata } from "next";
 
@@ -73,7 +74,7 @@ const Contact = () => {
           /> */}
             <img
               src={bg.src}
-              className="w-full max-w-[480px] text-center h-full object-cover"
+              className="w-full max-w-[380px] text-center h-full object-cover"
             />
           </div>
         </div>

@@ -34,8 +34,11 @@ const TOS = () => {
   return (
     <main className="max-w-xl mx-auto">
       <div className="p-5">
-      <Link href="/" className="flex items-center gap-2 text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200 border border-[hsl(var(--border))] px-2 py-1 w-fit pr-6">
-      <svg
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200 border border-[hsl(var(--border))] px-2 py-1 w-fit pr-6"
+        >
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -59,7 +62,7 @@ const TOS = () => {
         >
           {`Updated on 1 April, 2024
 
-Welcome to Zerotheorem! These terms and conditions outline the rules and regulations for the use of Zerotheorem's Website, located at https://scripai.com/.
+Welcome to Zerotheorem! These terms and conditions outline the rules and regulations for the use of Zerotheorem's Website, located at https://zerotheorem.com/
 
 By accessing this website we assume you accept these terms and conditions. Do not continue to use Zerotheorem if you do not agree to take all of the terms and conditions stated on this page.
 

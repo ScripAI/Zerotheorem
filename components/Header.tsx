@@ -7,6 +7,7 @@ import Image from "next/image";
 import logo from "@/app/logo.png";
 import logoDark from "@/app/logo-dark.png";
 import config from "@/config";
+import { MenuIcon } from "lucide-react";
 
 // A header with a logo on the left, and a CTA on the right.
 // The header is responsive, and on mobile, the links are hidden behind a burger button.
@@ -27,7 +28,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-[hsl(var(--header-bg))] border-[hsl(var(--header-border))] transition-colors duration-200">
       <nav
-        className="flex items-center max-w-6xl justify-between py-2 px-4 mx-auto"
+        className="flex items-center max-w-6xl justify-between py-2.5 px-4 mx-auto"
         aria-label="Global"
       >
         {/* Your logo/name on large screens */}
@@ -35,7 +36,7 @@ const Header = () => {
           href={"/"}
           className={`flex items-center gap-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
         >
-          <Image src={getLogo()} alt={config.appName} width={150} height={80} />
+          <Image src={getLogo()} alt={config.appName} width={160} height={80} />
         </Link>
 
         {/* Burger button to open menu on mobile */}
@@ -46,20 +47,7 @@ const Header = () => {
             onClick={() => setIsOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
+            <MenuIcon className="w-7 h-7" strokeWidth={1.5} />
           </button>
         </div>
 
@@ -69,26 +57,26 @@ const Header = () => {
           <div className="flex items-center gap-6 mr-4">
             <Link
               href="/"
-              className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
+              className="text-sm font-semibold text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
             >
               Home
             </Link>
             <Link
               href="/performance"
-              className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
+              className="text-sm font-semibold text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
             >
               Performance
             </Link>
 
             <Link
               href="/about"
-              className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
+              className="text-sm font-semibold text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
+              className="text-sm font-semibold text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] transition-colors duration-200"
             >
               Contact
             </Link>
@@ -99,7 +87,7 @@ const Header = () => {
       {/* Mobile menu, show/hide based on menu state. */}
       <div className={`relative z-50 ${isOpen ? "" : "hidden"}`}>
         <div
-          className={`fixed inset-y-0 right-0 z-10 bg-[hsl(var(--header-bg))] w-full px-4 py-2 overflow-y-auto border-l border-[hsl(var(--header-border))] transform origin-right transition ease-in-out duration-300`}
+          className={`fixed inset-y-0 right-0 z-10 bg-[hsl(var(--header-bg))] w-full px-4 py-2.5 overflow-y-auto border-l border-[hsl(var(--header-border))] transform origin-right transition ease-in-out duration-300`}
         >
           {/* Your logo/name on small screens */}
           <div className="flex items-center justify-between">
@@ -110,7 +98,7 @@ const Header = () => {
               <Image
                 src={getLogo()}
                 alt={config.appName}
-                width={150}
+                width={160}
                 height={80}
               />
             </Link>
@@ -140,33 +128,33 @@ const Header = () => {
 
           {/* Mobile menu content */}
           <div className="mt-2">
-            <div className="flex flex-col gap-y-3 ml-2 items-start">
+            <div className="flex flex-col gap-y-3 items-start">
               {/* Mobile Navigation Links */}
               <div className="flex flex-col w-full gap-1">
                 <Link
                   href="/"
-                  className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
+                  className="px-4 py-2 text-sm font-semibold text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="/performance"
-                  className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
+                  className="px-4 py-2 text-sm font-semibold text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   Performance
                 </Link>
                 <Link
                   href="/about"
-                  className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
+                  className="px-4 py-2 text-sm font-semibold text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="/contact"
-                  className="px-4 py-2 text-sm font-medium text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
+                  className="px-4 py-2 text-sm font-semibold text-[hsl(var(--text-primary))] hover:text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact

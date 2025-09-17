@@ -161,6 +161,20 @@ export default async function PerformancePage() {
             ))}
           </div>
         </section>
+        <section className="flex flex-col gap-2 mt-4">
+          <div className="font-bold opacity-80"> Disclaimer: </div>
+          <div className="text-justify opacity-80">
+            The information provided here is for educational and illustrative
+            purposes only and does not constitute an offer to sell, a
+            solicitation to buy, or a recommendation of any security or
+            investment strategy. Zero Theorem is a private investment firm and
+            does not market, solicit, or provide investment services to external
+            investors. Performance information presented herein solely for
+            informational purposes. Past performance is not indicative of, and
+            in no way guarantees, future results. All investments involve risk,
+            including the potential loss of principal.
+          </div>
+        </section>
       </main>
       <FooterBig />
     </>

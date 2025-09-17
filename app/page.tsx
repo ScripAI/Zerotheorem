@@ -56,17 +56,20 @@ const Home = () => {
         </div> */}
 
         <div className="flex md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden m-auto items-center justify-center px-8 py-10 md:py-24">
-          <div className="flex flex-col gap-3 w-full">
-            <div className="text-sm ml-1">We Are Scientists Searching for</div>
-            <div className="md:text-5xl text-3xl font-extrabold">
-              Asymmetric Returns{" "}
+          <div className="flex flex-col md:gap-3 gap-2 w-full">
+            <div className="text-base font-abold ml-1 uppercase">
+              Zerotheorem
             </div>
             <div className="md:text-5xl text-3xl font-extrabold">
-              In Nascent Technologies{" "}
+              We are specialists at
             </div>
+            <div className="md:text-5xl text-3xl font-extrabold">
+              Warehousing Bitcoin
+            </div>
+            <div className="md:text-5xl text-3xl font-extrabold">Tail Risk</div>
 
-            <div className="text-xs mt-1.5 font-light text-gray-400">
-              We invest early, before trends hit the mainstream
+            <div className="text-sm mt-1.5 font-light text-gray-400">
+              To producing excess returns
             </div>
             <ButtonLearnMore href="/about" text="Learn More" className="mt-6" />
           </div>
@@ -74,7 +77,8 @@ const Home = () => {
           {/* <ParticleHead /> */}
           <img
             src={pattern.src}
-            className="w-full max-w-[480px] text-center h-full object-cover"
+            // className="w-[380px] text-center h-full object-cover"
+            className="w-full  max-w-[480px]  text-center h-full object-cover"
           />
         </div>
 

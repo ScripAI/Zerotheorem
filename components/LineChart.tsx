@@ -50,12 +50,12 @@ export default function LineChart() {
 
         const json: ChartApiResponse = await response.json();
 
-        // Filter out entries without btc, ztc, or 3Rd values
+        // Filter out entries without btc, spy, or zt values
         const validData = json.sheet3.filter(
           (item) =>
             typeof item.btc === "number" &&
-            typeof item.ztc === "number" &&
-            typeof item["3Rd"] === "number"
+            typeof item.spy === "number" &&
+            typeof item.zt === "number"
         );
 
         if (validData.length === 0) {
@@ -69,8 +69,8 @@ export default function LineChart() {
 
         const labels = validData.map((item) => item.date);
         const btcData = validData.map((item) => item.btc);
-        const ztcData = validData.map((item) => item.ztc);
-        const thirdData = validData.map((item) => item["3Rd"]);
+        const spyData = validData.map((item) => item.spy);
+        const ztData = validData.map((item) => item.zt);
 
         const data: ChartData = {
           labels,
@@ -83,15 +83,15 @@ export default function LineChart() {
               tension: 0.1,
             },
             {
-              label: "ZTC",
-              data: ztcData,
+              label: "SPY",
+              data: spyData,
               borderColor: "rgb(54, 162, 235)",
               backgroundColor: "rgba(54, 162, 235, 0.2)",
               tension: 0.1,
             },
             {
-              label: "3Rd",
-              data: thirdData,
+              label: "ZT",
+              data: ztData,
               borderColor: "rgb(75, 192, 192)",
               backgroundColor: "rgba(75, 192, 192, 0.2)",
               tension: 0.1,
@@ -122,7 +122,7 @@ export default function LineChart() {
       },
       title: {
         display: true,
-        text: "Weekly Performance Comparison - BTC, ZTC & 3Rd",
+        text: "Weekly Performance Comparison - BTC, SPY & ZT",
         font: {
           size: 16,
         },

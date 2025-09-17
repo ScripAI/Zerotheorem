@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
 import aboutHero from "@/app/about-hero.gif";
-import bg from "@/app/about-hero.gif";
+import bg from "@/app/earth-3.gif";
 import stats from "@/app/stats.png";
 import ButtonLearnMore from "@/components/ButtonLearnMore";
 import { getSEOTags } from "@/libs/seo";
@@ -44,12 +44,14 @@ const About = () => {
 
       {/* <main className="m-auto h-screen flex flex-col bg-[url('/bg.gif')] bg-cover bg-center bg-no-repeat"> */}
       <main className="m-auto flex flex-col">
-        <div className="flex justify-between md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden gap-4 m-auto items-center p-10 md:pt-24">
-          <div className="flex flex-col gap-3 md:max-w-lg mt-12 w-full">
-            <div className="text-base">Our Mission</div>
-
-            <div className="md:text-4xl text-3xl font-extrabold">
-              To maximise investment utility whilst minimising downside risk
+        <div className="flex justify-between md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden gap-4 m-auto items-center p-10 md:pt-16 md:pb-0">
+          <div className="flex flex-col gap-4 md:max-w-lg w-full">
+            <div className="md:text-3xl text-2xl font-extrabold">
+              Our Mission
+            </div>
+            <div className="text-base opacity-80">
+              We bridge the gap between market participants seeking downside
+              protection and investors pursuing excess returns
             </div>
 
             {/* <div className="text-xs mt-1.5 font-light text-gray-700">
@@ -81,36 +83,33 @@ const About = () => {
           <div className="flex flex-col items-center justify-center">
             <img
               src={bg.src}
-              className="w-[450px] text-center h-full object-cover"
+              className="w-[380px] text-center h-full object-cover"
             />
           </div>
         </div>
 
-        <div className="flex md:flex-row flex-col justify-center max-w-6xl w-full overflow-hidden gap-8 m-auto items-center p-10">
+        <div className="flex md:flex-row  flex-col justify-center max-w-6xl w-full overflow-hidden gap-8 m-auto items-center p-10">
           <div>
-            <div className="text-base"> Who are we?</div>
-            <div className="text-sm mt-2 text-justify">
-              We are a group of PhD’s from natural sciences dedicated to finding
-              answers to complex and difficult problems. As early Bitcoin
-              advocates and blockchain investors, we love to challenge the
-              de-facto paradigm and are uncompromising in our pursuit for
-              greatness. We accept that change is a natural part of our journey
-              and we don’t know everything about everything. However by better
-              understanding ourselves we may be better at interpreting the world
-              around us.
+            <div className="text-2xl font-extrabold">Who are we?</div>
+            <div className="text-base mt-2 text-justify opacity-80">
+              We are a specialised private investment firm dedicated to
+              warehousing Bitcoin tail risk. We are a team of PhDs in physics,
+              engineering, and quantitative finance. As early Bitcoin adopters,
+              we bring over a decade of experience in blockchain investing and
+              entrepreneurial ventures — spanning mining, the development of
+              blockchain-based financial products and marketplaces, and the
+              management of investment funds.
             </div>
           </div>
           <div>
-            <div className="text-base"> What do we do?</div>
-            <div className="text-sm mt-2 text-justify">
-              With our global network, we identify investment opportunities that
-              have yet to fully mature at a local level. We work with diverse
-              set of investments to produce an optimal yield structure with
-              uncorrelated income streams. Our goal is to manage an increasing
-              set of income producing assets that when effectively combined
-              produce a net ZERO risk profile. Our day to day activities range
-              for direct currency & equity investments, corporate consulting and
-              small business venture capital.
+            <div className="text-2xl font-extrabold">What do we do?</div>
+            <div className="text-base mt-2 text-justify opacity-80">
+              By applying extreme value theory, actuarial science, and
+              quantitative risk management, we engineer strategies on Bitcoin
+              financial products that transform crash risk into structured
+              outcomes. As early Bitcoin adopters, we draw on deep domain
+              expertise and systematic trading to manage tail exposures with
+              discipline and precision.
             </div>
           </div>
         </div>
@@ -120,7 +119,7 @@ const About = () => {
             Corporate Services
           </div>
 
-          <div className="text-base text-center">
+          <div className="text-base text-center opacity-80">
             If you would like further information regarding corporate services
             please feel free to contact us directly.
           </div>

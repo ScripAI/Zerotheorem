@@ -24,10 +24,11 @@ const FooterBig = () => {
               className={`flex items-center justify-start gap-2 text-[hsl(var(--text-primary))] transition-colors duration-200`}
             >
               <Image
+                className="opacity-80"
                 src={getLogo()}
                 alt={config.appName}
-                width={80}
-                height={80}
+                width={70}
+                height={70}
               />
             </Link>
 
@@ -90,7 +91,7 @@ const FooterBig = () => {
               </div>
             </div>
 
-            <div className="px-4 text-left w-full">
+            {/* <div className="px-4 text-left w-full">
               <div className="footer-title font-semibold text-[hsl(var(--text-primary))] tracking-widest text-sm mb-3 transition-colors duration-200">
                 SOCIAL
               </div>
@@ -103,7 +104,7 @@ const FooterBig = () => {
                   LinkedIn
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
