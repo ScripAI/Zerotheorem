@@ -8,7 +8,7 @@ const Nav = () => {
     <nav className="flex w-full items-center justify-between border-b p-4">
       <div className="flex items-center gap-4">
         <Link href="/" className="text-xl font-bold">
-          ScripAI
+          Zerotheorem
         </Link>
       </div>
       <div className="flex items-center gap-4">
