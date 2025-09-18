@@ -6,36 +6,51 @@ import pattern from "@/app/pattern-1.gif";
 import { getSEOTags, renderSchemaTags } from "@/libs/seo";
 import type { Metadata } from "next";
 
-// SEO metadata for the home page
+// Enhanced SEO metadata for the home page
 export const metadata: Metadata = getSEOTags({
-  title: "ZeroTheorem - Asymmetric Returns in Nascent Technologies",
+  title: "ZeroTheorem - Bitcoin Tail Risk Warehousing & Asymmetric Returns",
   description:
-    "ZeroTheorem is an investment firm specializing in asymmetric returns from nascent technologies. We invest early in emerging trends before they hit the mainstream, maximizing utility while minimizing downside risk.",
+    "ZeroTheorem specializes in Bitcoin tail risk warehousing, delivering stable returns and uncorrelated alpha through quantitative risk management and early-stage technology investments.",
   keywords: [
+    "bitcoin tail risk",
     "investment firm",
-    "nascent technologies",
     "asymmetric returns",
-    "early stage investing",
-    "blockchain investment",
-    "cryptocurrency investment",
-    "venture capital",
-    "alternative investments",
+    "quantitative finance",
     "risk management",
+    "bitcoin investment",
+    "cryptocurrency trading",
+    "alternative investments",
     "portfolio optimization",
+    "uncorrelated alpha",
+    "stable returns",
+    "financial services",
+    "investment management",
+    "blockchain investment",
+    "early stage investing",
   ],
   canonicalUrlRelative: "/",
   openGraph: {
-    title: "ZeroTheorem - Asymmetric Returns in Nascent Technologies",
+    title: "ZeroTheorem - Bitcoin Tail Risk Warehousing & Asymmetric Returns",
     description:
-      "Investment firm specializing in early-stage technology investments with focus on asymmetric returns and risk minimization.",
+      "Specialized investment firm delivering stable returns and uncorrelated alpha through Bitcoin tail risk warehousing and quantitative risk management.",
     url: "https://zerotheorem.com/",
+  },
+  extraTags: {
+    "article:author": "ZeroTheorem Investment Team",
+    "article:section": "Investment Management",
+    "article:tag": [
+      "Bitcoin",
+      "Investment",
+      "Risk Management",
+      "Quantitative Finance",
+    ],
   },
 });
 
 const Home = () => {
   return (
     <>
-      {renderSchemaTags()}
+      {renderSchemaTags("home")}
       {/* <HelloBar /> */}
       <Suspense>
         <Header />
@@ -57,19 +72,16 @@ const Home = () => {
 
         <div className="flex md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden m-auto items-center justify-center px-8 py-10 md:py-24">
           <div className="flex flex-col md:gap-3 gap-2 w-full">
-            <div className="text-base font-abold ml-1 uppercase">
-              Zerotheorem
+            <div className="text-lg font-abold ml-1 ">We specialise in</div>
+            <div className="md:text-6xl text-4xl font-extrabold">
+              Warehousing
             </div>
-            <div className="md:text-5xl text-3xl font-extrabold">
-              We are specialists at
+            <div className="md:text-6xl text-4xl font-extrabold">
+              Bitcoin Tail Risk
             </div>
-            <div className="md:text-5xl text-3xl font-extrabold">
-              Warehousing Bitcoin
-            </div>
-            <div className="md:text-5xl text-3xl font-extrabold">Tail Risk</div>
 
-            <div className="text-sm mt-1.5 font-light text-gray-400">
-              To producing excess returns
+            <div className="text-base mt-1.5 font-light text-gray-400">
+              Delivering stable returns & uncorrelated alpha
             </div>
             <ButtonLearnMore href="/about" text="Learn More" className="mt-6" />
           </div>

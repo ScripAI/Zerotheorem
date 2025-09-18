@@ -41,10 +41,16 @@ export default function LineChart() {
         setError(null);
 
         const url =
-          "https://api.sheety.co/277b72d8965eafe86b5880836f10c1a1/performance/sheet3";
-        const response = await fetch(url);
+          "https://api.sheety.co/33d9ec27f5c7dfb130eb655baacab48d/performance/sheet3";
+        const response = await fetch(`${url}?t=${Date.now()}`, {
+          cache: "no-store",
+          next: { revalidate: 0 },
+        });
 
         if (!response.ok) {
+          if (response.status === 402) {
+            throw new Error("API quota exceeded. Please try again later.");
+          }
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
 
@@ -122,7 +128,7 @@ export default function LineChart() {
       },
       title: {
         display: true,
-        text: "Weekly Performance Comparison - BTC, SPY & ZT",
+        text: "Performance Comparison - BTC, SPY & ZT",
         font: {
           size: 16,
         },
@@ -170,7 +176,7 @@ export default function LineChart() {
     return (
       <div className="card bg-base-200/40 border border-base-300/40">
         <div className="card-body">
-          <div className="alert alert-error">
+          <div className="alert alert-warning">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="stroke-current shrink-0 h-6 w-6"
@@ -181,10 +187,17 @@ export default function LineChart() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
               />
             </svg>
-            <span>Error loading chart: {error}</span>
+            <div>
+              <h3 className="font-bold">Chart Data Unavailable</h3>
+              <div className="text-xs">
+                {error.includes("quota exceeded")
+                  ? "Data service is temporarily unavailable. Please check back later."
+                  : `Error: ${error}`}
+              </div>
+            </div>
           </div>
         </div>
       </div>

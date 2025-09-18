@@ -3,38 +3,55 @@ import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
 import bg from "@/app/about-3.gif";
 
-import { getSEOTags } from "@/libs/seo";
+import { getSEOTags, renderSchemaTags } from "@/libs/seo";
 import type { Metadata } from "next";
 
-// SEO metadata for the contact page
+// Enhanced SEO metadata for the contact page
 export const metadata: Metadata = getSEOTags({
-  title: "Contact ZeroTheorem - Investment Inquiries & Corporate Services",
+  title:
+    "Contact ZeroTheorem - Bitcoin Investment & Corporate Services | Surry Hills NSW",
   description:
-    "Contact ZeroTheorem for investment opportunities and corporate services. Located in Surry Hills, NSW, Australia. Reach out for early-stage technology investment consultations.",
+    "Contact ZeroTheorem for Bitcoin tail risk investment opportunities and corporate services. Located in Surry Hills, NSW, Australia. Professional investment consultation and corporate services available.",
   keywords: [
     "contact zerotheorem",
-    "investment inquiries",
+    "bitcoin investment consultation",
     "corporate services",
-    "investment consultation",
+    "investment inquiries",
     "zerotheorem contact",
-    "investment opportunities",
+    "bitcoin tail risk",
     "Surry Hills NSW",
     "Australia investment firm",
-    "technology investment",
-    "early stage investing",
+    "quantitative finance consultation",
+    "investment opportunities",
+    "corporate investment services",
+    "bitcoin risk management",
+    "investment consultation",
+    "financial services contact",
   ],
   canonicalUrlRelative: "/contact",
   openGraph: {
-    title: "Contact ZeroTheorem - Investment Inquiries & Corporate Services",
+    title:
+      "Contact ZeroTheorem - Bitcoin Investment & Corporate Services | Surry Hills NSW",
     description:
-      "Contact ZeroTheorem for investment opportunities and corporate services. Located in Surry Hills, NSW, Australia.",
+      "Contact ZeroTheorem for Bitcoin tail risk investment opportunities and corporate services. Professional consultation available in Surry Hills, NSW, Australia.",
     url: "https://zerotheorem.com/contact",
+  },
+  extraTags: {
+    "article:author": "ZeroTheorem Investment Team",
+    "article:section": "Contact",
+    "article:tag": [
+      "Contact",
+      "Investment Consultation",
+      "Corporate Services",
+      "Bitcoin",
+    ],
   },
 });
 
 const Contact = () => {
   return (
     <>
+      {renderSchemaTags("contact")}
       {/* <HelloBar /> */}
       <Suspense>
         <Header />

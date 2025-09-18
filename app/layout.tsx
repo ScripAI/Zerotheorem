@@ -14,6 +14,9 @@ export const viewport: Viewport = {
   themeColor: config.colors.main,
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  colorScheme: "dark",
 };
 
 // This adds default SEO tags to all pages in our app.
@@ -27,6 +30,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${font.className} dark`}
       suppressHydrationWarning
     >
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content={config.colors.main} />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+      </head>
       <body>
         <ThemeProvider
           attribute="class"

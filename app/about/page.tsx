@@ -5,38 +5,57 @@ import aboutHero from "@/app/about-hero.gif";
 import bg from "@/app/earth-3.gif";
 import stats from "@/app/stats.png";
 import ButtonLearnMore from "@/components/ButtonLearnMore";
-import { getSEOTags } from "@/libs/seo";
+import { getSEOTags, renderSchemaTags } from "@/libs/seo";
 import type { Metadata } from "next";
 
-// SEO metadata for the about page
+// Enhanced SEO metadata for the about page
 export const metadata: Metadata = getSEOTags({
-  title: "About ZeroTheorem - Investment Philosophy & Mission",
+  title:
+    "About ZeroTheorem - PhD Team & Bitcoin Tail Risk Investment Philosophy",
   description:
-    "Learn about ZeroTheorem's mission to maximize investment utility while minimizing downside risk. Our team of PhD scientists focuses on early-stage technology investments and uncorrelated income streams.",
+    "Meet ZeroTheorem's team of PhD scientists specializing in Bitcoin tail risk warehousing. Learn about our mission to bridge market participants seeking downside protection with investors pursuing excess returns.",
   keywords: [
     "about zerotheorem",
-    "investment philosophy",
-    "investment mission",
     "PhD scientists",
-    "early stage investing",
-    "technology investments",
+    "bitcoin tail risk",
+    "investment philosophy",
+    "quantitative finance",
     "risk management",
-    "uncorrelated income",
-    "investment strategy",
+    "PhD team",
+    "blockchain expertise",
+    "investment mission",
     "corporate services",
+    "downside protection",
+    "excess returns",
+    "quantitative risk management",
+    "extreme value theory",
+    "actuarial science",
   ],
   canonicalUrlRelative: "/about",
   openGraph: {
-    title: "About ZeroTheorem - Investment Philosophy & Mission",
+    title:
+      "About ZeroTheorem - PhD Team & Bitcoin Tail Risk Investment Philosophy",
     description:
-      "Learn about ZeroTheorem's mission to maximize investment utility while minimizing downside risk through early-stage technology investments.",
+      "Meet ZeroTheorem's team of PhD scientists specializing in Bitcoin tail risk warehousing and quantitative risk management strategies.",
     url: "https://zerotheorem.com/about",
+  },
+  extraTags: {
+    "article:author": "ZeroTheorem Investment Team",
+    "article:section": "About Us",
+    "article:tag": [
+      "About",
+      "Team",
+      "PhD Scientists",
+      "Investment Philosophy",
+      "Bitcoin",
+    ],
   },
 });
 
 const About = () => {
   return (
     <>
+      {renderSchemaTags("about")}
       {/* <HelloBar /> */}
       <Suspense>
         <Header />

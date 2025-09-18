@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
 import LineChart from "@/components/LineChart";
 import { Suspense } from "react";
-import { getSEOTags } from "@/libs/seo";
+import { getSEOTags, renderSchemaTags } from "@/libs/seo";
 import type { Metadata } from "next";
 
 interface MetricItem {
@@ -16,13 +16,73 @@ interface ApiRow {
   [key: string]: unknown;
 }
 
+const transformLabel = (fieldName: string): string => {
+  // Do spacing first, then handle parentheses
+  let result = fieldName
+    .replace(/([a-zA-Z]+)(\d+)/g, "$1 $2") // Sep2025 -> Sep 2025
+    .replace(/([A-Z])/g, " $1") // Add space before capitals
+    .replace(/\(/g, " (") // Add space before parentheses
+    .replace(/\s+/g, " ") // Clean spaces
+    .trim()
+    .replace(/\(btc\)/gi, "(BTC)") // Fix BTC after spacing
+    .replace(/\(spy\)/gi, "(SPY)"); // Fix SPY after spacing
+
+  // Process words but skip already correct ones
+  return result
+    .split(" ")
+    .map((word) => {
+      if (word === "(BTC)" || word === "(SPY)") return word;
+
+      const lower = word.toLowerCase();
+      const specialWords: Record<string, string> = {
+        btc: "BTC",
+        spy: "SPY",
+        est: "Est",
+        avg: "Avg",
+        max: "Max",
+        min: "Min",
+        std: "Std",
+        dev: "Dev",
+        cagr: "CAGR",
+        start: "Start",
+        sep: "Sep",
+        oct: "Oct",
+        nov: "Nov",
+        dec: "Dec",
+        jan: "Jan",
+        feb: "Feb",
+        mar: "Mar",
+        apr: "Apr",
+        may: "May",
+        jun: "Jun",
+        jul: "Jul",
+        aug: "Aug",
+      };
+
+      return (
+        specialWords[lower] ||
+        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      );
+    })
+    .join(" ");
+};
+
 async function getMetrics(): Promise<MetricItem[]> {
   const url =
-    "https://api.sheety.co/277b72d8965eafe86b5880836f10c1a1/performance/sheet1";
+    "https://api.sheety.co/33d9ec27f5c7dfb130eb655baacab48d/performance/sheet1";
 
   try {
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error(`Failed to fetch metrics: ${res.status}`);
+    const res = await fetch(`${url}?t=${Date.now()}`, {
+      cache: "no-store",
+      next: { revalidate: 0 },
+    });
+    if (!res.ok) {
+      if (res.status === 402) {
+        console.warn("API quota exceeded for metrics data");
+        throw new Error("API quota exceeded");
+      }
+      throw new Error(`Failed to fetch metrics: ${res.status}`);
+    }
     const json = (await res.json()) as { sheet1?: ApiRow[] };
     const row = json.sheet1?.[0] ?? {};
 
@@ -36,98 +96,110 @@ async function getMetrics(): Promise<MetricItem[]> {
       return `${v}`;
     };
 
-    const metrics: MetricItem[] = [
+    // Define field mappings with their value formatters
+    const fieldMappings: Array<{
+      field: string;
+      formatter: (value: unknown) => string;
+    }> = [
+      { field: "returnToDate (startSep2025)", formatter: pct },
+      { field: "estCagr", formatter: pct },
+      { field: "30DAvgReturn", formatter: pct },
+      { field: "30DAvgStdev", formatter: pct },
+      { field: "estSharpeRatio", formatter: num },
       {
-        label: "Return to Date (Aug.2025)",
-        value: pct(row["returnToDate (aug2025)"]),
+        field: "maxDrawdown",
+        formatter: (v: unknown) => {
+          if (typeof v !== "number" || Number.isNaN(v)) return "-";
+          return `${(v * 100).toFixed(2)}%`;
+        },
       },
       {
-        label: "Est. Annualised Return",
-        value: pct(row["estAnnualisedReturn"]),
-      },
-      { label: "Est. Sharpe Ratio", value: num(row["estSharpeRatio"]) },
-      { label: "Est. Sortino Ratio", value: num(row["estSortinoRatio"]) },
-      {
-        label: "Maximum Drawdown Exp.",
-        value:
-          `${(typeof row["maximumDrawdownExp"] === "number" ? (row["maximumDrawdownExp"] as number) * 100 : NaN).toFixed(2)}%`.replace(
-            "NaN%",
-            "-"
-          ),
+        field: "maxDrawdownDuration",
+        formatter: (v: unknown) => (typeof v === "string" ? v : "-"),
       },
       {
-        label: "Recovery Time Exp.",
-        value:
-          typeof row["recoveryTimeExp"] === "string"
-            ? (row["recoveryTimeExp"] as string)
-            : "-",
+        field: "averageWinRate",
+        formatter: (v: unknown) => {
+          if (typeof v !== "number" || Number.isNaN(v)) return "-";
+          return `${(v * 100).toFixed(1)}%`;
+        },
       },
-      {
-        label: "Win Rate Exp",
-        value:
-          typeof row["winRateExp"] === "number"
-            ? `${(row["winRateExp"] as number).toFixed(1)}%`
-            : "-",
-      },
-      { label: "Est. Beta", value: num(row["estBeta"]) },
-      {
-        label: "Standard Deviation Exp.",
-        value: num(row["standardDeviationExp"]),
-      },
-      {
-        label: "BTC Rolling Volatility",
-        value: num(row["btcRollingVolatility"]),
-      },
-      {
-        label: "BTC Return (Aug.2025)",
-        value: pct(row["btcReturn (aug2025)"]),
-      },
-      { label: "Est. Alpha", value: num(row["estAlpha"]) },
+      { field: "30DAvgBeta (btc)", formatter: num },
+      { field: "30DAvgBeta (spy)", formatter: num },
+      { field: "totalAlpha (btc)", formatter: pct },
+      { field: "totalAlpha (spy)", formatter: pct },
     ];
+
+    const metrics: MetricItem[] = fieldMappings.map(({ field, formatter }) => ({
+      label: transformLabel(field),
+      value: formatter(row[field]),
+    }));
 
     return metrics;
   } catch (error) {
     // Fallback to static placeholders if API fails
-    return [
-      { label: "Return to Date (Aug.2025)", value: "-" },
-      { label: "Est. Annualised Return", value: "-" },
-      { label: "Est. Sharpe Ratio", value: "-" },
-      { label: "Est. Sortino Ratio", value: "-" },
-      { label: "Maximum Drawdown Exp.", value: "-" },
-      { label: "Recovery Time Exp.", value: "-" },
-      { label: "Win Rate Exp", value: "-" },
-      { label: "Est. Beta", value: "-" },
-      { label: "Standard Deviation Exp.", value: "-" },
-      { label: "BTC Rolling Volatility", value: "-" },
-      { label: "BTC Return (Aug.2025)", value: "-" },
-      { label: "Est. Alpha", value: "-" },
+    const fallbackFields = [
+      "returnToDate (startSep2025)",
+      "estCagr",
+      "30DAvgReturn",
+      "30DAvgStdev",
+      "estSharpeRatio",
+      "maxDrawdown",
+      "maxDrawdownDuration",
+      "averageWinRate",
+      "30DAvgBeta (btc)",
+      "30DAvgBeta (spy)",
+      "totalAlpha (btc)",
+      "totalAlpha (spy)",
     ];
+
+    return fallbackFields.map((field) => ({
+      label: transformLabel(field),
+      value: "-",
+    }));
   }
 }
 
-// SEO metadata for the performance page
+// Enhanced SEO metadata for the performance page
 export const metadata: Metadata = getSEOTags({
-  title: "Historical Performance | ZeroTheorem Investment Strategy",
+  title:
+    "ZeroTheorem Performance Metrics - Bitcoin Tail Risk Investment Returns",
   description:
-    "View ZeroTheorem's investment performance metrics including returns, risk statistics, Sharpe ratio, and benchmark comparisons. Transparent reporting on our asymmetric returns strategy.",
+    "View ZeroTheorem's Bitcoin tail risk investment performance metrics including returns, Sharpe ratio, risk statistics, and benchmark comparisons. Transparent reporting on our quantitative investment strategy.",
   keywords: [
-    "investment performance",
-    "portfolio returns",
+    "bitcoin investment performance",
+    "tail risk performance",
+    "investment returns",
     "Sharpe ratio",
     "risk metrics",
-    "investment strategy",
-    "asymmetric returns",
+    "bitcoin tail risk",
+    "quantitative investment",
     "performance tracking",
     "investment analytics",
     "risk-adjusted returns",
     "benchmark comparison",
+    "asymmetric returns",
+    "portfolio performance",
+    "investment strategy results",
+    "financial performance",
   ],
   canonicalUrlRelative: "/performance",
   openGraph: {
-    title: "Historical Performance | ZeroTheorem Investment Strategy",
+    title:
+      "ZeroTheorem Performance Metrics - Bitcoin Tail Risk Investment Returns",
     description:
-      "View ZeroTheorem's investment performance metrics including returns, risk statistics, and benchmark comparisons.",
+      "View ZeroTheorem's Bitcoin tail risk investment performance metrics including returns, Sharpe ratio, and risk statistics with transparent reporting.",
     url: "https://zerotheorem.com/performance",
+  },
+  extraTags: {
+    "article:author": "ZeroTheorem Investment Team",
+    "article:section": "Performance",
+    "article:tag": [
+      "Performance",
+      "Investment Returns",
+      "Bitcoin",
+      "Risk Metrics",
+    ],
   },
 });
 
@@ -135,6 +207,7 @@ export default async function PerformancePage() {
   const metrics = await getMetrics();
   return (
     <>
+      {renderSchemaTags("performance")}
       <Suspense>
         <Header />
       </Suspense>

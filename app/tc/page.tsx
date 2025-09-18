@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSEOTags } from "@/libs/seo";
+import { getSEOTags, renderSchemaTags } from "@/libs/seo";
 import config from "@/config";
 
 // CHATGPT PROMPT TO GENERATE YOUR TERMS & SERVICES — replace with your own data 👇
@@ -26,41 +26,68 @@ import config from "@/config";
 // Please write a simple Terms & Services for my site. Add the current date. Do not add or explain your reasoning. Answer:
 
 export const metadata = getSEOTags({
-  title: `Terms and Conditions | ${config.appName}`,
-  canonicalUrlRelative: "/tos",
+  title: `Terms and Conditions | ${config.appName} - Investment Firm Legal Terms`,
+  description:
+    "ZeroTheorem's terms and conditions outline the legal framework for using our investment services. Review our terms for Bitcoin tail risk investment and corporate services.",
+  keywords: [
+    "terms and conditions",
+    "investment firm terms",
+    "zerotheorem terms",
+    "legal terms",
+    "investment services terms",
+    "bitcoin investment terms",
+    "corporate services terms",
+    "legal framework",
+    "terms of service",
+    "investment agreement",
+  ],
+  canonicalUrlRelative: "/tc",
+  openGraph: {
+    title: `Terms and Conditions | ${config.appName} - Investment Firm Legal Terms`,
+    description:
+      "ZeroTheorem's terms and conditions outline the legal framework for our Bitcoin tail risk investment and corporate services.",
+    url: "https://zerotheorem.com/tc",
+  },
+  extraTags: {
+    "article:author": "ZeroTheorem Legal Team",
+    "article:section": "Legal",
+    "article:tag": ["Terms and Conditions", "Legal", "Investment Terms"],
+  },
 });
 
 const TOS = () => {
   return (
-    <main className="max-w-xl mx-auto">
-      <div className="p-5">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200 border border-[hsl(var(--border))] px-2 py-1 w-fit pr-6"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
+    <>
+      {renderSchemaTags("terms")}
+      <main className="max-w-xl mx-auto">
+        <div className="p-5">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-sm text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))] hover:bg-[hsl(var(--accent))] rounded transition-colors duration-200 border border-[hsl(var(--border))] px-2 py-1 w-fit pr-6"
           >
-            <path
-              fillRule="evenodd"
-              d="M15 10a.75.75 0 01-.75.75H7.612l2.158 1.96a.75.75 0 11-1.04 1.08l-3.5-3.25a.75.75 0 010-1.08l3.5-3.25a.75.75 0 111.04 1.08L7.612 9.25h6.638A.75.75 0 0115 10z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Back
-        </Link>
-        <h1 className="text-3xl font-extrabold py-6">
-          Terms and Conditions for {config.appName}
-        </h1>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                fillRule="evenodd"
+                d="M15 10a.75.75 0 01-.75.75H7.612l2.158 1.96a.75.75 0 11-1.04 1.08l-3.5-3.25a.75.75 0 010-1.08l3.5-3.25a.75.75 0 111.04 1.08L7.612 9.25h6.638A.75.75 0 0115 10z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Back
+          </Link>
+          <h1 className="text-3xl font-extrabold py-6">
+            Terms and Conditions for {config.appName}
+          </h1>
 
-        <pre
-          className="leading-relaxed whitespace-pre-wrap"
-          style={{ fontFamily: "sans-serif" }}
-        >
-          {`Updated on 1 April, 2024
+          <pre
+            className="leading-relaxed whitespace-pre-wrap"
+            style={{ fontFamily: "sans-serif" }}
+          >
+            {`Updated on 1 April, 2024
 
 Welcome to Zerotheorem! These terms and conditions outline the rules and regulations for the use of Zerotheorem's Website, located at https://zerotheorem.com/
 
@@ -158,9 +185,10 @@ To the maximum extent permitted by applicable law, we exclude all representation
 The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.
 
 As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.`}
-        </pre>
-      </div>
-    </main>
+          </pre>
+        </div>
+      </main>
+    </>
   );
 };
 
