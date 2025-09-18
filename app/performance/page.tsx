@@ -88,7 +88,7 @@ async function getMetrics(): Promise<MetricItem[]> {
 
     const pct = (v: unknown): string => {
       if (typeof v !== "number" || Number.isNaN(v)) return "-";
-      return `${(v * 100).toFixed(0)}%`;
+      return `${(v * 100).toFixed(2)}%`;
     };
 
     const num = (v: unknown): string => {
@@ -212,7 +212,7 @@ export default async function PerformancePage() {
         <Header />
       </Suspense>
       <main className="container  max-w-6xl mx-auto px-4 py-10">
-        <section className="mb-8">
+        <section className="mb-7">
           <LineChart />
         </section>
 

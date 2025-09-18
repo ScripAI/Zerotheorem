@@ -56,12 +56,9 @@ export default function LineChart() {
 
         const json: ChartApiResponse = await response.json();
 
-        // Filter out entries without btc, spy, or zt values
+        // Include all entries with dates, even if some values are missing
         const validData = json.sheet3.filter(
-          (item) =>
-            typeof item.btc === "number" &&
-            typeof item.spy === "number" &&
-            typeof item.zt === "number"
+          (item) => item.date && item.date.trim() !== ""
         );
 
         if (validData.length === 0) {
@@ -73,10 +70,26 @@ export default function LineChart() {
           (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
         );
 
+        // Create labels with only the actual data dates
         const labels = validData.map((item) => item.date);
-        const btcData = validData.map((item) => item.btc);
-        const spyData = validData.map((item) => item.spy);
-        const ztData = validData.map((item) => item.zt);
+
+        // Create data arrays with only actual data
+        const btcData = validData.map((item) =>
+          typeof item.btc === "number" ? item.btc : null
+        );
+        const spyData = validData.map((item) =>
+          typeof item.spy === "number" ? item.spy : null
+        );
+        const ztData = validData.map((item) =>
+          typeof item.zt === "number" ? item.zt : null
+        );
+
+        // Calculate maximum value from all datasets (filter out null values)
+        const allValues = [...btcData, ...spyData, ...ztData].filter(
+          (value): value is number => value !== null
+        );
+        const maxValue = allValues.length > 0 ? Math.max(...allValues) : 0.1;
+        const yAxisMax = maxValue + maxValue * 0.3; // Add 30% above max value for better visibility
 
         const data: ChartData = {
           labels,
@@ -105,7 +118,11 @@ export default function LineChart() {
           ],
         };
 
-        setChartData(data);
+        setChartData({
+          labels: data.labels,
+          datasets: data.datasets,
+          yAxisMax: yAxisMax,
+        });
       } catch (err) {
         console.error("Error fetching chart data:", err);
         setError(
@@ -122,15 +139,43 @@ export default function LineChart() {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      padding: {
+        top: 40,
+        bottom: 15,
+        left: 20,
+        right: 60,
+      },
+    },
     plugins: {
       legend: {
-        position: "top" as const,
+        position: "bottom" as const,
+        labels: {
+          font: {
+            size: 12,
+          },
+          padding: 20,
+        },
       },
       title: {
         display: true,
         text: "Performance Comparison - BTC, SPY & ZT",
+        position: "bottom" as const,
         font: {
-          size: 16,
+          size: 12,
+        },
+        padding: {
+          top: 10,
+          bottom: 5,
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context: any) {
+            const value = context.parsed.y;
+            const percentage = Math.round(value * 100);
+            return `${context.dataset.label}: ${percentage}%`;
+          },
         },
       },
     },
@@ -139,18 +184,65 @@ export default function LineChart() {
         title: {
           display: true,
           text: "Date",
+          font: {
+            size: 11,
+          },
         },
         ticks: {
           maxRotation: 45,
           minRotation: 0,
+          font: {
+            size: 10,
+          },
+        },
+        grid: {
+          display: true,
+          color: "rgba(255, 255, 255, 0.1)",
+        },
+        border: {
+          display: true,
+          color: "rgba(255, 255, 255, 0.3)",
         },
       },
       y: {
         title: {
           display: true,
-          text: "Value",
+          text: "Cumulative Return %",
+          font: {
+            size: 11,
+          },
         },
-        beginAtZero: false,
+        ticks: {
+          font: {
+            size: 10,
+          },
+          stepSize: 1,
+          maxTicksLimit: 20, // Allow more ticks to be shown
+          callback: function (value: any) {
+            return Math.round(value * 100); // Convert to percentage (0.01 -> 1)
+          },
+        },
+        afterBuildTicks: function (axis: any) {
+          // Force all ticks from 0 to 8 to be shown
+          const ticks = [];
+          for (let i = 0; i <= 8; i++) {
+            ticks.push({
+              value: i / 100, // Convert back to decimal for internal use
+              label: i.toString(),
+            });
+          }
+          axis.ticks = ticks;
+        },
+        beginAtZero: true,
+        max: chartData?.yAxisMax || 0.1, // Use calculated max or default to 0.1
+        grid: {
+          display: true,
+          color: "rgba(255, 255, 255, 0.1)",
+        },
+        border: {
+          display: true,
+          color: "rgba(255, 255, 255, 0.3)",
+        },
       },
     },
     interaction: {
@@ -217,7 +309,7 @@ export default function LineChart() {
   return (
     <div className="card bg-base-200/40 border border-base-300/40">
       <div className="card-body">
-        <div className="h-96">
+        <div className="h-[460px]">
           <Line data={chartData} options={options} />
         </div>
       </div>

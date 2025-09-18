@@ -72,7 +72,9 @@ const Home = () => {
 
         <div className="flex md:flex-row flex-col-reverse max-w-6xl w-full overflow-hidden m-auto items-center justify-center px-8 py-10 md:py-24">
           <div className="flex flex-col md:gap-3 gap-2 w-full">
-            <div className="text-lg font-abold ml-1 ">We specialise in</div>
+            <div className="text-lg font-abold ml-1 uppercase ">
+              Zerotheorem
+            </div>
             <div className="md:text-6xl text-4xl font-extrabold">
               Warehousing
             </div>
