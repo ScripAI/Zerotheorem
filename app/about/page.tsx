@@ -2,7 +2,9 @@ import { Suspense } from "react";
 import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
 import aboutHero from "@/app/about-hero.gif";
-import bg from "@/app/earth-3.gif";
+// import bg from "@/app/earth-3.gif";
+import bg from "@/app/about-9.webp";
+
 import stats from "@/app/stats.png";
 import ButtonLearnMore from "@/components/ButtonLearnMore";
 import { getSEOTags, renderSchemaTags } from "@/libs/seo";
@@ -68,7 +70,7 @@ const About = () => {
             <div className="md:text-3xl text-2xl font-extrabold">
               Our Mission
             </div>
-            <div className="text-base opacity-80">
+            <div className="text-[22px] opacity-80">
               We bridge the gap between market participants seeking downside
               protection and investors pursuing excess returns
             </div>
@@ -114,7 +116,7 @@ const About = () => {
               We are a specialised private investment firm dedicated to
               warehousing Bitcoin tail risk. We are a team of PhDs in physics,
               engineering, and quantitative finance. As early Bitcoin adopters,
-              we bring over a decade of experience in blockchain investing and
+              We bring over a decade of experience in blockchain investing and
               entrepreneurial ventures — spanning mining, the development of
               blockchain-based financial products and marketplaces, and the
               management of investment funds.
@@ -126,9 +128,8 @@ const About = () => {
               By applying extreme value theory, actuarial science, and
               quantitative risk management, we engineer strategies on Bitcoin
               financial products that transform crash risk into structured
-              outcomes. As early Bitcoin adopters, we draw on deep domain
-              expertise and systematic trading to manage tail exposures with
-              discipline and precision.
+              outcomes. We draw on deep domain expertise and systematic trading
+              to manage tail exposures with discipline and precision.
             </div>
           </div>
         </div>

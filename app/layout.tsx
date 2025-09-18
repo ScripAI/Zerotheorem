@@ -3,6 +3,7 @@ import { Bricolage_Grotesque } from "next/font/google";
 import { Viewport } from "next";
 import { getSEOTags } from "@/libs/seo";
 import ClientLayout from "@/components/LayoutClient";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { ThemeProvider } from "next-themes";
 import config from "@/config";
 import "./globals.css";
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body>
+        <GoogleAnalytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

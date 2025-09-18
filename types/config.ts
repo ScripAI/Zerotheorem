@@ -65,4 +65,7 @@ export interface ConfigProps {
     loginUrl: string;
     callbackUrl: string;
   };
+  googleAnalytics?: {
+    measurementId: string;
+  };
 }

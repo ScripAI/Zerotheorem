@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Header from "@/components/Header";
 import FooterBig from "@/components/FooterBig";
 import ButtonLearnMore from "@/components/ButtonLearnMore";
-import pattern from "@/app/pattern-1.gif";
+import pattern from "@/app/pattern-reverse.gif";
 import { getSEOTags, renderSchemaTags } from "@/libs/seo";
 import type { Metadata } from "next";
 
