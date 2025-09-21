@@ -71,7 +71,7 @@ const About = () => {
               Our Mission
             </div>
             <div className="text-[22px] opacity-80">
-              We bridge the gap between market participants seeking downside
+              To bridge the gap between market participants seeking downside
               protection and investors pursuing excess returns
             </div>
 
