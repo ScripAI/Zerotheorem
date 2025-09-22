@@ -111,8 +111,8 @@ export default function LineChart() {
             {
               label: "ZT",
               data: ztData,
-              borderColor: "rgb(75, 192, 192)",
-              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              borderColor: "#FFFFFF",
+              backgroundColor: "rgba(255, 255, 255, 0.2)",
               tension: 0.1,
             },
           ],
