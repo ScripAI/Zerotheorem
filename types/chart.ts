@@ -22,4 +22,5 @@ export interface ChartData {
   labels: string[];
   datasets: ChartDataset[];
   yAxisMax?: number;
+  yAxisMin?: number;
 }

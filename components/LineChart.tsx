@@ -84,12 +84,23 @@ export default function LineChart() {
           typeof item.zt === "number" ? item.zt : null
         );
 
-        // Calculate maximum value from all datasets (filter out null values)
+        // Calculate min and max values from all datasets (filter out null values)
         const allValues = [...btcData, ...spyData, ...ztData].filter(
           (value): value is number => value !== null
         );
-        const maxValue = allValues.length > 0 ? Math.max(...allValues) : 0.1;
-        const yAxisMax = maxValue + maxValue * 0.3; // Add 30% above max value for better visibility
+
+        if (allValues.length === 0) {
+          throw new Error("No valid numeric data found");
+        }
+
+        const maxValue = Math.max(...allValues);
+        const minValue = Math.min(...allValues);
+
+        // Calculate padding for better visibility (30% of the range)
+        const range = maxValue - minValue;
+        const padding = range * 0.3;
+        const yAxisMax = maxValue + padding;
+        const yAxisMin = minValue - padding;
 
         const data: ChartData = {
           labels,
@@ -122,6 +133,7 @@ export default function LineChart() {
           labels: data.labels,
           datasets: data.datasets,
           yAxisMax: yAxisMax,
+          yAxisMin: yAxisMin,
         });
       } catch (err) {
         console.error("Error fetching chart data:", err);
@@ -173,7 +185,7 @@ export default function LineChart() {
         callbacks: {
           label: function (context: any) {
             const value = context.parsed.y;
-            const percentage = Math.round(value * 100);
+            const percentage = (value * 100).toFixed(2);
             return `${context.dataset.label}: ${percentage}%`;
           },
         },
@@ -216,24 +228,12 @@ export default function LineChart() {
           font: {
             size: 10,
           },
-          stepSize: 1,
           maxTicksLimit: 20, // Allow more ticks to be shown
           callback: function (value: any) {
-            return Math.round(value * 100); // Convert to percentage (0.01 -> 1)
+            return (value * 100).toFixed(1); // Convert to percentage with 1 decimal place
           },
         },
-        afterBuildTicks: function (axis: any) {
-          // Force all ticks from 0 to 8 to be shown
-          const ticks = [];
-          for (let i = 0; i <= 8; i++) {
-            ticks.push({
-              value: i / 100, // Convert back to decimal for internal use
-              label: i.toString(),
-            });
-          }
-          axis.ticks = ticks;
-        },
-        beginAtZero: true,
+        min: chartData?.yAxisMin || -0.1, // Use calculated min or default to -0.1
         max: chartData?.yAxisMax || 0.1, // Use calculated max or default to 0.1
         grid: {
           display: true,
